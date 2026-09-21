@@ -212,9 +212,9 @@
           列印 / 存為PDF
         </button>
 
-        <button type="button" onclick="submitForm()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-cathedral-800 to-cathedral-900 hover:from-cathedral-900 hover:to-slate-900 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+        <button type="button" id="submit-btn" onclick="submitForm()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-cathedral-800 to-cathedral-900 hover:from-cathedral-900 hover:to-slate-900 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
           <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-          正式送出確認
+          <span id="submit-btn-text">正式送出確認</span>
         </button>
       </div>
     </div>
@@ -664,7 +664,9 @@
       window.print();
     }
 
-    function submitForm() {
+    const APPS_SCRIPT_WEBAPP_URL = 'https://script.google.com/a/macros/cdsj5.edu.mo/s/AKfycbxTiN6Vv_NUugL40n2KetLVmm6DSDJf2P-Ot8dJnnZImJAs4z8d3XoOmmKgO37xjrAm8w/exec';
+
+    async function submitForm() {
       const director = document.getElementById('director-name').value.trim();
       const confirmCheck = document.getElementById('confirm-check').checked;
 
@@ -680,7 +682,50 @@
         return;
       }
 
+      const submitBtn = document.getElementById('submit-btn');
+      const submitBtnText = document.getElementById('submit-btn-text');
+      submitBtn.disabled = true;
+      submitBtnText.innerText = '正在上傳至教研處試算表...';
+
       const data = COURSE_DATABASE[currentSectionKey];
+      const payload = {
+        sectionKey: currentSectionKey,
+        sectionTitle: data.title,
+        director: director,
+        contact: document.getElementById('director-contact').value.trim(),
+        notes: document.getElementById('extra-notes').value.trim(),
+        c1_name: (document.querySelector('input[name="adopt-mode-0"]:checked').value === 'edit' ? document.getElementById('edit-name-0').value.trim() : data.courses[0].nameZh),
+        c1_concept: (document.querySelector('input[name="adopt-mode-0"]:checked').value === 'edit' ? document.getElementById('edit-concept-0').value.trim() : data.courses[0].concept),
+        c1_highlights: (document.querySelector('input[name="adopt-mode-0"]:checked').value === 'edit' ? document.getElementById('edit-highlights-0').value.trim() : data.courses[0].highlights.join('； ')),
+        c1_photo: document.getElementById('need-photo-0').checked ? '需形象組入班拍攝' : '學部自行提供',
+
+        c2_name: (document.querySelector('input[name="adopt-mode-1"]:checked').value === 'edit' ? document.getElementById('edit-name-1').value.trim() : data.courses[1].nameZh),
+        c2_concept: (document.querySelector('input[name="adopt-mode-1"]:checked').value === 'edit' ? document.getElementById('edit-concept-1').value.trim() : data.courses[1].concept),
+        c2_highlights: (document.querySelector('input[name="adopt-mode-1"]:checked').value === 'edit' ? document.getElementById('edit-highlights-1').value.trim() : data.courses[1].highlights.join('； ')),
+        c2_photo: document.getElementById('need-photo-1').checked ? '需形象組入班拍攝' : '學部自行提供',
+
+        c3_name: (document.querySelector('input[name="adopt-mode-2"]:checked').value === 'edit' ? document.getElementById('edit-name-2').value.trim() : data.courses[2].nameZh),
+        c3_concept: (document.querySelector('input[name="adopt-mode-2"]:checked').value === 'edit' ? document.getElementById('edit-concept-2').value.trim() : data.courses[2].concept),
+        c3_highlights: (document.querySelector('input[name="adopt-mode-2"]:checked').value === 'edit' ? document.getElementById('edit-highlights-2').value.trim() : data.courses[2].highlights.join('； ')),
+        c3_photo: document.getElementById('need-photo-2').checked ? '需形象組入班拍攝' : '學部自行提供'
+      };
+
+      try {
+        if (APPS_SCRIPT_WEBAPP_URL) {
+          await fetch(APPS_SCRIPT_WEBAPP_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+          });
+        }
+      } catch (err) {
+        console.warn('Google Sheet submission note:', err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtnText.innerText = '正式送出確認';
+      }
+
       document.getElementById('modal-section-text').innerText = data.title;
       document.getElementById('modal-director-text').innerText = director;
       document.getElementById('modal-time-text').innerText = new Date().toLocaleString();
