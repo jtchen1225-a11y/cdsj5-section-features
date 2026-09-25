@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聖若瑟教區中學第五校 ‧ 官方網站五大學部專區特色重點課程填報系統</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cathedral: {
+              50: '#f0f4f9',
+              100: '#dde6f2',
+              600: '#1c447d',
+              800: '#0f2c59',
+              900: '#0a1d3b',
+            },
+            crimson: {
+              600: '#c53030',
+              700: '#9b1c1c',
+              800: '#771d1d',
+            },
+            amberGold: {
+              500: '#d97706',
+              600: '#b45309',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft JhengHei", "PingFang TC", sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+
+  <!-- Header Container -->
+  <div class="max-w-4xl mx-auto mb-6">
+    <!-- Header Banner -->
+    <div class="bg-gradient-to-r from-cathedral-900 via-cathedral-800 to-cathedral-900 text-white rounded-2xl shadow-xl overflow-hidden border border-cathedral-600">
+      <div class="p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-4">
+          <div class="text-center sm:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amberGold-500/20 text-amber-300 text-xs font-semibold tracking-wide uppercase mb-2 border border-amber-400/30">
+              <span>✦ 課程發展及教研處 ‧ 行政線上專用表單</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-1">
+              聖若瑟教區中學第五校
+            </h1>
+            <h2 class="text-lg sm:text-xl font-medium text-slate-200">
+              2026/27 官方網站「五大學部專區」特色重點課程填報系統
+            </h2>
+          </div>
+          <div class="flex flex-col items-center sm:items-end text-xs text-slate-300 bg-white/10 backdrop-blur-sm px-4 py-2.5 rounded-xl border border-white/15">
+            <span class="font-semibold text-amber-300">落實校網優化兩步走</span>
+            <span>時限：9月25日(週五)下班前</span>
+            <span class="text-emerald-300 mt-1 flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              已預填完畢 ‧ 10分鐘即完
+            </span>
+          </div>
+        </div>
+
+        <!-- Notification Message Box -->
+        <div class="mt-6 p-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-sm text-slate-100 leading-relaxed">
+          <div class="font-semibold text-amber-200 mb-1 flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            致各位親愛的學部主任（KGS、PCS、PES、SCS、SES）：
+          </div>
+          <p>
+            依據行政會決議，新校網即將全新上線「五大學部特色專區」！為踐行<strong>「做選擇題，不做作文題」</strong>的減負承諾，教研處已預先為貴學部研擬了完整的特色課程方案（含名稱、理念、三大亮點與心聲）。主任只需<strong>勾選所屬學部、快速核對、一鍵確認或就地微調</strong>即可！如需照片，教研處將協調形象組入班拍攝，絕不讓主任為找素材煩惱。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Form Content -->
+  <main class="max-w-4xl mx-auto space-y-6">
+
+    <!-- Section 1: Basic Information -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+      <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-cathedral-800 text-white flex items-center justify-center font-bold text-sm">
+          1
+        </div>
+        <div>
+          <h3 class="text-base sm:text-lg font-bold text-slate-900">填報人與所屬學部選擇</h3>
+          <p class="text-xs text-slate-500">請先選擇您的學部，系統將自動為您調出專屬的預填課程清單</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <!-- Section Selection -->
+        <div class="sm:col-span-2">
+          <label class="block text-sm font-bold text-slate-700 mb-2">
+            請選擇您主責的學部 <span class="text-crimson-600">*</span>
+          </label>
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5" id="section-selector-group">
+            <button type="button" onclick="selectSection('KGS')" data-section="KGS" class="section-btn px-3 py-3 rounded-xl border border-slate-200 text-center font-semibold text-xs sm:text-sm hover:border-cathedral-600 hover:bg-cathedral-50 transition-all flex flex-col items-center gap-1">
+              <span class="text-lg">🌱</span>
+              <span>幼稚園部</span>
+              <span class="text-[10px] text-slate-400 font-normal">KGS</span>
+            </button>
+            <button type="button" onclick="selectSection('PCS')" data-section="PCS" class="section-btn px-3 py-3 rounded-xl border border-slate-200 text-center font-semibold text-xs sm:text-sm hover:border-cathedral-600 hover:bg-cathedral-50 transition-all flex flex-col items-center gap-1">
+              <span class="text-lg">📚</span>
+              <span>小學中文部</span>
+              <span class="text-[10px] text-slate-400 font-normal">PCS</span>
+            </button>
+            <button type="button" onclick="selectSection('PES')" data-section="PES" class="section-btn px-3 py-3 rounded-xl border border-slate-200 text-center font-semibold text-xs sm:text-sm hover:border-cathedral-600 hover:bg-cathedral-50 transition-all flex flex-col items-center gap-1">
+              <span class="text-lg">🚀</span>
+              <span>小學英文部</span>
+              <span class="text-[10px] text-slate-400 font-normal">PES</span>
+            </button>
+            <button type="button" onclick="selectSection('SCS')" data-section="SCS" class="section-btn px-3 py-3 rounded-xl border border-slate-200 text-center font-semibold text-xs sm:text-sm hover:border-cathedral-600 hover:bg-cathedral-50 transition-all flex flex-col items-center gap-1">
+              <span class="text-lg">🎯</span>
+              <span>中學中文部</span>
+              <span class="text-[10px] text-slate-400 font-normal">SCS</span>
+            </button>
+            <button type="button" onclick="selectSection('SES')" data-section="SES" class="section-btn px-3 py-3 rounded-xl border border-slate-200 text-center font-semibold text-xs sm:text-sm hover:border-cathedral-600 hover:bg-cathedral-50 transition-all flex flex-col items-center gap-1">
+              <span class="text-lg">🌐</span>
+              <span>中學英文部</span>
+              <span class="text-[10px] text-slate-400 font-normal">SES</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Name -->
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1" for="director-name">
+            主任 / 填報負責人姓名 <span class="text-crimson-600">*</span>
+          </label>
+          <input type="text" id="director-name" placeholder="例：陳綺丹主任 / 翁靄珍主任" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cathedral-600 focus:border-cathedral-600">
+        </div>
+
+        <!-- Phone / Ext -->
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1" for="director-contact">
+            校內聯絡分機 / 手機號碼
+          </label>
+          <input type="text" id="director-contact" placeholder="例：內線 2210 / 6688XXXX" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cathedral-600 focus:border-cathedral-600">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Status & Persistence Bar -->
+    <div id="section-status-bar" class="bg-white rounded-2xl shadow-xs border border-slate-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all">
+      <div class="flex items-center gap-3">
+        <div id="status-icon-badge" class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center text-xl shrink-0">
+          💾
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span id="status-main-title" class="font-bold text-sm text-slate-800">本機持久存檔運作中</span>
+            <span id="status-pill" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">照片常駐頁面</span>
+          </div>
+          <p id="status-sub-desc" class="text-xs text-slate-500 mt-0.5">
+            所有上傳照片與填寫內容均已自動保存在本機，關閉或重新整理網頁絕不丟失。
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <button type="button" id="sync-cloud-btn" onclick="syncFromCloud()" class="px-3.5 py-2 bg-cathedral-800 hover:bg-cathedral-900 text-white text-xs font-bold rounded-xl shadow-xs transition-all flex items-center gap-1.5" title="從 Google 試算表拉取最新主任提交進度與照片">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path></svg>
+          <span id="sync-cloud-btn-text">雲端同步最新進度</span>
+        </button>
+        <button type="button" onclick="resetCurrentSection()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold rounded-xl border border-slate-200 transition-all" title="重設此學部為教研處建議">
+          <span>🔄 恢復預設</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Section 2: Dynamic Pre-filled Cards Area -->
+    <div id="course-cards-container" class="space-y-6">
+      <!-- Injected by JavaScript based on active section -->
+    </div>
+
+    <!-- Section 3: Global Feedback & Confirmation -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+      <div class="flex items-center gap-3 border-b border-slate-100 pb-4 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-cathedral-800 text-white flex items-center justify-center font-bold text-sm">
+          3
+        </div>
+        <div>
+          <h3 class="text-base sm:text-lg font-bold text-slate-900">整體反饋與核對確認</h3>
+          <p class="text-xs text-slate-500">落實溝通協作，確保內容如實反映學部特色與育人成果</p>
+        </div>
+      </div>
+
+      <div class="space-y-5">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1" for="extra-notes">
+            主任對本學部專區呈現方式的補充建議（選填）
+          </label>
+          <textarea id="extra-notes" rows="2" placeholder="例：希望專區色調突出活潑風格、希望能放上學部活動簡介短片連結等..." class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cathedral-600 focus:border-cathedral-600"></textarea>
+        </div>
+
+        <!-- Confirmation -->
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+          <div class="flex items-start gap-2.5">
+            <input type="checkbox" id="confirm-check" class="mt-1 w-4 h-4 text-cathedral-800 rounded border-slate-300 focus:ring-cathedral-600">
+            <label for="confirm-check" class="text-sm text-slate-700 font-medium">
+              我已審閱上述 3 項特色重點課程內容，確認可作為本學部於學校新版官網專區呈現之核心亮點。<span class="text-crimson-600">*</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="bg-white rounded-2xl shadow-lg border border-slate-200 p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 sticky bottom-4 z-40">
+      <div class="text-xs text-slate-500 text-center sm:text-left">
+        <span class="font-bold text-cathedral-800 block text-sm mb-0.5">填報即時狀態：<span id="save-status-badge" class="text-amber-600">草稿自動儲存中</span></span>
+        <span>系統已支援自動儲存，刷新頁面資料不遺失</span>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-2.5 w-full sm:w-auto">
+        <button type="button" onclick="copyFormattedReport()" class="px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+          一鍵複製報告文本
+        </button>
+
+        <button type="button" onclick="printOrExportDoc()" class="px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          列印 / 存為PDF
+        </button>
+
+        <button type="button" id="submit-btn" onclick="submitForm()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-cathedral-800 to-cathedral-900 hover:from-cathedral-900 hover:to-slate-900 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          <span id="submit-btn-text">正式送出確認</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-lg w-full p-6 sm:p-8 text-center animate-fade-in">
+        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+        <h3 class="text-xl font-bold text-slate-900 mb-2">特色課程確認提交成功！</h3>
+        <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+          衷心感謝主任的支持！教研處已收到您的確認資料，將立即進行五大學部特色課程的統整彙編。
+        </p>
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs text-left space-y-1.5 mb-5">
+          <div><strong>提交學部：</strong><span id="modal-section-text"></span></div>
+          <div><strong>負責主任：</strong><span id="modal-director-text"></span></div>
+          <div><strong>提交時間：</strong><span id="modal-time-text"></span></div>
+          <div><strong>附帶照片：</strong><span id="modal-photos-text" class="text-emerald-700 font-semibold">未上傳</span></div>
+          <div><strong>後續工作：</strong>課程發展及教研處將彙整五大學部資料，呈報校長及行政會。</div>
+        </div>
+        <div class="flex flex-col gap-2.5">
+          <button type="button" onclick="copyFormattedReport()" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+            📋 一鍵複製確認文本（發送微信 / 教研處）
+          </button>
+          <button type="button" onclick="closeSuccessModal()" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold transition-all">
+            好的，完成並關閉
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo Lightbox Modal for HD Presentation -->
+    <div id="photo-lightbox-modal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 hidden transition-opacity" onclick="closeLightbox(event)">
+      <div class="relative max-w-4xl w-full bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col" onclick="event.stopPropagation()">
+        <div class="px-5 py-3.5 bg-slate-800/90 border-b border-slate-700/70 flex items-center justify-between">
+          <div class="flex items-center gap-2.5 overflow-hidden">
+            <span id="lightbox-badge" class="px-2.5 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold rounded-lg shrink-0">學部</span>
+            <h4 id="lightbox-title" class="text-xs sm:text-sm font-semibold text-white truncate">課程實景照片</h4>
+          </div>
+          <button type="button" onclick="closeLightboxDirect()" class="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-all" title="關閉">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <div class="p-3 sm:p-5 flex items-center justify-center bg-black/60 min-h-[260px] max-h-[72vh] overflow-hidden">
+          <img id="lightbox-img" src="" alt="課程實景照片" class="max-h-[68vh] max-w-full object-contain rounded-lg shadow-2xl">
+        </div>
+        <div class="px-5 py-3 bg-slate-800/90 border-t border-slate-700/70 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs text-slate-300">
+          <span id="lightbox-meta">高畫質實景模式 ‧ 已常駐系統</span>
+          <span class="text-emerald-400 font-medium flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>適合向校長/主任大螢幕投影匯報展示</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Database & Form Controller Script -->
+  <script>
+    // Master Pre-filled Candidate Database for the 5 Sections
+    const COURSE_DATABASE = {
+      KGS: {
+        title: "幼稚園部 (KGS)",
+        desc: "高廣度自主學習 × 探究力 × STEAM、多元活動 × 六育均衡 × 雙語沉浸、天主教全人教育 × 品格培育 × 家校合作",
+        summary: "從幼稚園起步，為孩子鋪好幼小中每一步的學習基礎。\n讓孩子成為「會玩、會說、會想、會愛人、會感恩」的小小學習者。",
+        courses: [
+          {
+            id: 'KGS-1',
+            nameZh: '高廣度自主學習 × 探究力 × STEAM',
+            nameEn: 'HighScope Active Learning, Inquiry & STEAM',
+            concept: '以 High Scope「Plan–Do–Review」學習循環為核心，讓幼兒成為學習主導者，培養主動性、解難力、合作力與創造力。',
+            highlights: [
+              '【High Scope 高廣度教學法】以「Plan–Do–Review（計劃–實踐–回顧）」學習循環為核心，讓幼兒成為學習主導者。',
+              '【區角自主探究】結合豐富區角活動，全面培養主動性、解難力、合作力與創造力。',
+              '【STEAM 課程】透過科普與創新活動，啟發邏輯思維、探究精神與解決問題能力。'
+            ],
+            quote: '「在 High Scope『Plan–Do–Review』引導下，孩子每天進課室都有清晰目標，在區角操作與 STEAM 探索中既主動又充滿自信！」',
+            photoTip: '幼兒在區角開展「計劃–實踐–回顧」、分組動手操作 STEAM 科普創新教具之專注特寫畫面。'
+          },
+          {
+            id: 'KGS-2',
+            nameZh: '多元活動 × 六育均衡 × 雙語沉浸',
+            nameEn: 'Diverse Activities, Holistic Development & Bilingual Immersion',
+            concept: '提供多元體藝與雙語活動，定期轉換涵蓋靈、德、智、體、群、美六育，推展生活化雙語沉浸與繪本共讀。',
+            highlights: [
+              '【多元體藝活動】提供音樂律動、美藝勞作、體能運動、語言與手語雙語小教室等多元活動。',
+              '【六育均衡全面發展】定期轉換活動，涵蓋靈、德、智、體、群、美六育，促進全面發展。',
+              '【雙語沉浸與繪本共讀】英語融入生活與主題，透過繪本共讀、方案分享，提升語言表達力與閱讀素養。'
+            ],
+            quote: '「活動多姿多彩，孩子既有音樂體能的舒展，又在手語與英語繪本共讀中學會表達與感恩，身心發展非常均衡！」',
+            photoTip: '幼兒參與音樂律動、美藝手作、體能運動或外師英語繪本共讀之歡樂生動畫面。'
+          },
+          {
+            id: 'KGS-3',
+            nameZh: '天主教全人教育 × 品格培育 × 家校合作',
+            nameEn: 'Catholic Holistic Education, Character Building & Home-School Partnership',
+            concept: '秉承「以愛、尊重、感恩、服務」理念，培養敬主愛人品格；落實幼小中一貫銜接與家校同心，讓孩子在愛中成長。',
+            highlights: [
+              '【天主教品格培育】秉承「以愛、尊重、感恩、服務」的天主教教育理念，培養孩子敬主愛人、常祈禱的良好品格。',
+              '【幼小中一貫銜接】課程共備、資源共享，確保幼小中一貫銜接。',
+              '【家校同心與健康關顧】強調家校合作，舉辦親子活動，並提供健康午膳、督課服務及安全校園環境，讓孩子在愛與關懷中快樂成長。'
+            ],
+            quote: '「學校充滿福音的愛與溫暖，孩子懂禮貌又常懷感恩心；健全的午膳督課與幼小中直升銜接，讓我們家長無比安心！」',
+            photoTip: '幼兒參與祈禱禮儀、溫馨親子互動活動，以及健康營養午膳與課後督課關顧之溫馨照。'
+          }
+        ]
+      },
+      PCS: {
+        title: "小學中文部 (PCS)",
+        desc: "常識生活實驗探究、中華文化底蘊素養、分層賦能拔尖保底",
+        courses: [
+          {
+            id: 'PCS-1',
+            nameZh: '動手探究 ‧ 常識生活實驗與「從做中學」探索',
+            nameEn: 'Learning by Doing: General Studies Hands-on Experiments & Inquiry',
+            concept: '特別重視實驗與探究活動，讓學生在動手操作與「從做中學」中印證所學，將抽象概念轉化為具體經驗，培養獨立思考與解決問題能力。',
+            highlights: [
+              '【重視動手實驗，告別單向傳授】有別於傳統課堂單向傳授，特別重視實驗與探究活動，讓學生在動手操作與主動探索中掌握知識。',
+              '【生活情境印證，抽象概念具體化】開展生活化探究活動印證所學，將抽象的常識概念轉化為具體的實作經驗，大大深化理解與記憶。',
+              '【化身小小探究者，培育獨立思維】引導學生從被動接收者轉變為「發現問題、尋找答案的小小探究者」，全面培養獨立思考與自主解難力。'
+            ],
+            quote: '「孩子在常識實驗課上自己動手探索，回家興奮地分享發現問題與驗證答案的過程，真正體會到『從做中學』的深刻樂趣！」',
+            photoTip: '學生分組動手操作常識科實驗器材、專注觀察現象並記錄探究筆記之生動特寫照。'
+          },
+          {
+            id: 'PCS-2',
+            nameZh: '經典潤心 ‧ 中華傳統文化素養與德行實踐',
+            nameEn: 'Cultural Heritage: Chinese Classic Reading & Moral Practice',
+            concept: '融通中華美德與天主教真善美，涵養有根有愛的謙謙君子。',
+            highlights: [
+              '階梯式古詩文吟誦與經典閱讀，厚植宏大的人文感知底蘊。',
+              '開展毛筆書法、節氣文化與傳統工藝實踐，親手觸摸文化脈搏。',
+              '結合孝親尊師校本德育目標，引導學生在家庭與校園踐行品格。'
+            ],
+            quote: '「看到孩子在學校書法課上的端莊專注，還能在晨讀中朗朗誦讀經典，深切感受到學校厚重的人文熏陶。」',
+            photoTip: '學生身著整潔校服專注書寫書法、手持經典文本深情晨讀的特寫畫面。'
+          },
+          {
+            id: 'PCS-3',
+            nameZh: '全人托舉 ‧ 階梯式課堂拔尖保底賦能計劃',
+            nameEn: 'Empower All: Tiered Learning & Individualized Support',
+            concept: '一個都不能少！為優秀者插上翅膀，為困難者搭建堅固階梯。',
+            highlights: [
+              '基於單元診斷數據實施分層教學，作業彈性分級（基礎＋挑戰）。',
+              '課後開設專屬賦能小組，針對核心知識盲點實施精準微補強。',
+              '結合高階思維探究，引導學有餘力學生挑戰跨學科專案研究。'
+            ],
+            quote: '「老師從來沒有因為孩子吸收慢而冷落他，反而在課後耐心為他拆解難題，這種不放棄的愛德讓我們家長極為感動。」',
+            photoTip: '教師俯下身子為學生一對一耐心解題的溫馨近景、小組互助討論畫面。'
+          }
+        ]
+      },
+      PES: {
+        title: "小學英文部 (PES)",
+        desc: "三語學術卓越、創新跨學科學習、文化傳承與全人發展 (Trilingual Excellence, Cross-Disciplinary Learning & Whole-Person Development)",
+        courses: [
+          {
+            id: 'PES-1',
+            nameZh: '三語學術卓越',
+            nameEn: 'Trilingual Academic Excellence',
+            concept: '以英語為主要教學語言，確保粵、英、普三語流利，課程嚴謹，培養批判性與創造性思維。\n(Rigorous curriculum delivered primarily in English, ensuring fluency in Cantonese, English, and Mandarin while cultivating critical and creative thinking.)',
+            highlights: [
+              '【沉浸式三語氛圍】以英語為主要教學語言，深化粵語、英語、普通話三語流利表達與無縫切換能力。 (Rigorous curriculum delivered primarily in English, ensuring high fluency across Cantonese, English, and Mandarin.)',
+              '【嚴謹學術思維奠基】構建高標準學術課程架構，系統性奠定紮實之核心學科知識基底。 (High-standard academic curriculum framework cultivating solid foundational knowledge and intellectual depth.)',
+              '【雙核高階思維培養】課堂深度融入探究式提問與思辨任務，同步激活批判性思維與創造性思維。 (Fostering critical and creative thinking through inquiry-based discussions and problem-solving tasks.)'
+            ],
+            quote: '「孩子在全英教學環境中自然掌握流利英語，同時粵語與普通話表達同樣優異，展現出高度自信與獨立思維！」\n("Children develop natural fluency in English while maintaining excellent Cantonese and Mandarin proficiency with confident critical thinking.")',
+            photoTip: '外師與學生進行全英互動啟發教學、小組以思維導圖開展思辨討論之課堂特寫照。'
+          },
+          {
+            id: 'PES-2',
+            nameZh: '創新跨學科學習',
+            nameEn: 'Innovative Cross-Disciplinary Learning',
+            concept: '融合5E、PBL、STEAM、AI、IT及SDG等元素，促進跨學科協作、實際應用及多元評量，強調高階思維。\n(Integrates 5E, PBL, STEAM, AI, IT, and SDG concepts across subjects, fostering collaboration, real-world application, and diverse assessment for higher-order thinking.)',
+            highlights: [
+              '【前沿科創元素深度融合】全面融入 5E 探究、專案式學習 (PBL)、STEAM 創客、人工智慧 (AI)、資訊科技 (IT) 與聯合國永續發展目標 (SDG)。 (Comprehensive integration of 5E inquiry, PBL, STEAM, AI, IT, and UN SDG concepts across subjects.)',
+              '【真實情境跨學科協作】打破單一學科邊界，推動團隊合作將知識靈活應用於生活真實問題的解決。 (Fostering cross-disciplinary teamwork and hands-on application to solve authentic real-world challenges.)',
+              '【促進高階思維之多元評量】結合過程性專案評估、實作成果展演與同儕互評，全面深化分析、綜合與創造之高階思維。 (Diverse assessments emphasizing higher-order thinking, practical execution, and reflective collaborative growth.)'
+            ],
+            quote: '「在跨學科與 AI 專案學習中，看到孩子跟同儕分工合作做出實體模型，不僅學會應用知識，更高階思維與協作能力大增！」\n("Through STEAM and AI projects, students apply classroom knowledge to real-world challenges with impressive teamwork.")',
+            photoTip: '學生分組操作 STEAM / AI 智慧教具器材、動手製作模型與展示 SDG 跨學科專案海報之生動畫面。'
+          },
+          {
+            id: 'PES-3',
+            nameZh: '文化傳承與全人發展',
+            nameEn: 'Cultural Heritage & Whole-Person Development',
+            concept: '糅合中國傳統文化與濃厚讀寫氛圍，透過多元活動與比賽，培育自信、品格、世界公民意識及終身學習能力。\n(Blends traditional Chinese culture with a vibrant literacy atmosphere, nurturing confidence, character, global citizenship, and lifelong learning through varied activities and competitions.)',
+            highlights: [
+              '【中華傳統文化涵養浸潤】在全英學習環境中深植中華優秀傳統文化根基，涵養兼具家國情懷與道德禮儀之健全人格。 (Rooting students deeply in traditional Chinese cultural heritage and moral virtues within an international learning environment.)',
+              '【濃厚校園讀寫文化構建】推動豐富多元的分級閱讀、文學鑑賞與原創寫作工作坊，涵育終身熱愛閱讀的深厚語文素養。 (Building a vibrant campus literacy culture that inspires literary appreciation, expressive confidence, and lifelong reading habits.)',
+              '【多元賽事歷練世界公民】藉由校內外多姿多彩的實踐活動、校際競賽與公眾演講，培育堅毅品格、世界公民意識與終身學習力。 (Nurturing character, confidence, global citizenship, and lifelong learning through diverse extracurricular activities and competitions.)'
+            ],
+            quote: '「學校既有濃郁的國際化英語閱讀氛圍，又非常重視中華傳統美德的薰陶，孩子知書達禮、充滿自信，正是我們最嚮往的全人教育！」\n("A holistic education where students embrace rich Chinese cultural roots while shining as confident, culturally grounded global citizens.")',
+            photoTip: '學生參與中華文化特色體驗、英語讀寫成果分享或在校內外各項才藝競賽中獲獎展示之自信風采。'
+          }
+        ]
+      },
+      SCS: {
+        title: "中學中文部 (SCS)",
+        desc: "緊貼社會發展開拓多元出路（1+4專業課程）、AI賦能教學提升效能、小組賦能搭建多元舞台",
+        courses: [
+          {
+            id: 'SCS-1',
+            nameZh: '緊貼社會發展 ‧ 開拓多元出路',
+            nameEn: 'Aligned with Social Development: Diversified Pathways & Applied Curricula',
+            concept: '配合澳門特區「1+4」多元策略，於26/27學年與高校及企業合作開設「數據科學與會展策劃」及「物聯網技術應用」專業課程，幫助學生及早規劃升學及職業方向。',
+            highlights: [
+              '【對接澳門「1+4」多元策略】緊密結合社會發展趨勢與人才需求，於26/27學年開設「數據科學與會展策劃」及「物聯網技術應用」兩門專業課程，為學生搭建多元發展平台。',
+              '【校企聯動與產學合作】「數據科學與會展策劃」與澳門旅遊大學合辦，銜接蓬勃旅遊會展業；「物聯網技術應用」與高新科技企業新大陸集團合辦，掌握物聯網核心技術。',
+              '【理實一體化專業情境教學】結合理論學習與實踐應用，讓學生在真實專業情境中學以致用；持續拓展高校與企業合作網絡，開拓更廣闊成長舞台。'
+            ],
+            quote: '「透過與澳門旅遊大學及新大陸科技集團的深度合作，我們在高中就能接觸到大數據與物聯網的實務操作，對未來的升學與職業生涯充滿信心！」',
+            photoTip: '學生操作物聯網感測模組器材、或進行會展策劃專案實務模擬討論之生動照。'
+          },
+          {
+            id: 'SCS-2',
+            nameZh: '「AI賦能教學」：以智能科技提升教學效能',
+            nameEn: 'AI-Empowered Teaching: Enhancing Pedagogical Efficiency with Smart Tech',
+            concept: '順應教育數字化浪潮，引入科大訊飛、文曲智閱、AI ENGLISH、學科網等智能平台，全環節賦能教學，實現「教」與「學」雙向提升。',
+            highlights: [
+              '【全流程教育數字化覆蓋】引入科大訊飛、文曲智閱、AI ENGLISH、學科網等AI教學平台及硬件，貫穿課前備課、課堂互動、作業批改與學情分析。',
+              '【智能批改與精準因材施教】透過智能批改與大數據分析，教師即時掌握每位學生學習狀況，減輕重複工作負擔，實施精準教學與個性化輔導。',
+              '【自主學習與教學效能躍升】學生藉助AI工具進行個性化練習與自主探究，課堂變得更生動、更高效，實現「教」與「學」雙向質量躍升。'
+            ],
+            quote: '「AI智能批改與大數據分析讓我能第一時間查漏補缺，獲得專屬的個性化練習推薦，課堂互動也更加生動高效！」',
+            photoTip: '師生於課堂上使用智慧大屏與平板進行即時AI教學互動、智慧系統學情分析介面特寫。'
+          },
+          {
+            id: 'SCS-3',
+            nameZh: '「小組賦能」：搭建舞台，盡展所長',
+            nameEn: 'Team Empowerment: Building Platforms for Every Student to Excel',
+            concept: '林鎮翔副校長親自領導STEAM小組征戰全球屢獲殊榮；攜手澳門大學深耕中國歷史文化，成立多元學會實地考察，讓每位同學發光發亮。',
+            highlights: [
+              '【林副校長親領STEAM國際爭光】STEAM教育推廣小組由林鎮翔副校長親自領導，系統化培訓組員參與全球科創比賽，屢獲佳績，鍛鍊實踐能力、協作精神與創新思維。',
+              '【攜手澳大共育家國文化情懷】與澳門大學中國歷史文化中心合作共同設立「中國歷史文化推廣小組」，透過講座、參訪與文化活動加深認同，厚植家國情懷。',
+              '【社團學會走出課室實地考察】於26/27學年成立地理學會等多元組織，鼓勵走出課室實地踏查與探究，搭建多元舞台讓每位同學發掘並發揮所長。'
+            ],
+            quote: '「在林副校長親自帶領的STEAM小組中，我們代表學校登上全球科技比賽舞台獲得大獎；多元化的小組讓我們每個人都能找到熱愛，在屬於自己的舞台上閃閃發光！」',
+            photoTip: '林鎮翔副校長帶領學生在國際科創比賽獲獎留影、或學生參與澳門大學歷史文化參訪與地理實地考察之精彩畫面。'
+          }
+        ]
+      },
+      SES: {
+        title: "中學英文部 (SES)",
+        desc: "全英思辨模聯演辯、國際學術論文寫作、SDAO全球多元出路",
+        courses: [
+          {
+            id: 'SES-1',
+            nameZh: '英語思辨・研究與表達成長計劃',
+            nameEn: 'English in Action: Research, Reasoning & Leadership',
+            concept: '讓學生以英語探索跨學科議題、提出有根據的觀點，並在交流與實踐中建立自信。',
+            highlights: [
+              '【跨學科研究，培養自主探究能力】由 2026-2027 學年起，課程逐步推行涵蓋中二至中四的研究項目：中二規劃基礎研究，中三開展社區研究，中四進行學術探究。學生將以海報及口頭簡報公開呈現研究成果。',
+              '【English Club 延伸課堂，讓思辨走向舞台】課堂以外，English Club 結合模擬聯合國、英語辯論及 Toastmasters（國際演講會）青少年領導課程等活動，讓學生練習聆聽不同觀點、清晰表達與有理據地回應，提升溝通及思辨能力。',
+              '【從研究到表達，學以致用】學生把蒐集資料、整理觀點及合作討論的成果，轉化為英語寫作、海報和口頭匯報，逐步建立有內容、有條理的表達能力。'
+            ],
+            quote: '「孩子現在會主動關心不同議題，也更願意用英語解釋自己的想法。我看到的不只是英語進步，還有思考和表達上的成長。」',
+            photoTip: '學生展示跨學科研究海報、進行英語口頭簡報，或在 English Club 模擬聯合國/辯論/Toastmasters 演講活動現場之自信身影。'
+          },
+          {
+            id: 'SES-2',
+            nameZh: '國際鏈接 ‧ 全英文學術寫作與跨學科專題研究',
+            nameEn: 'Academic Horizons: Advanced Writing & Interdisciplinary Capstone',
+            concept: '接軌國際高等教育學術標準，鋪就通往全球名校的卓越基石。',
+            highlights: [
+              '系統導入文獻引用規範（APA/MLA），培育嚴謹學術論文行文標準。',
+              '鼓勵學生自選跨學科主題（如AI倫理、生態保育），開展獨立專案研究。',
+              '專業外籍導師一對一指導論文修改，無縫接軌海外名校學術強度。'
+            ],
+            quote: '「在老師指導下完成人生第一篇全英學術小論文，進大學後發現自己在論文架構與文獻搜尋上早已領先一步！」',
+            photoTip: '學生在圖書館或研討室與外籍導師圍繞電腦進行學術論文批改指導特寫。'
+          },
+          {
+            id: 'SES-3',
+            nameZh: '卓越生涯 ‧ 多元升學輔導與生涯規劃矩陣',
+            nameEn: 'Future Pathways: Global Admissions & Career Mentorship',
+            concept: '一人一策精准導航，連結世界名校出路，成就不設限的人生藍圖。',
+            highlights: [
+              '【課程標準與國際全面接軌】校內直考 Pearson IGCSE/IAL 國際認證，無縫銜接港澳及海外頂尖名校。',
+              '【升學路徑多元】藉內地保送與四校聯考，為學生直通國內頂尖學府及本澳大學築基鋪路。',
+              '【開拓升學視野】學校透過多元暑期研學、升學講座、大學參訪及校友分享，全面開拓學生的升學視野。'
+            ],
+            quote: '「在升學導師精準評估下，學校近五年更有56%留學生躋身QS前百名校。」',
+            photoTip: '學生在升學輔導室接受一對一生涯諮詢、參加海外大學升學講座或查閱世界名校錄取牆之特寫。'
+          }
+        ]
+      }
+    };
+
+    let currentSectionKey = 'PCS'; // Default to Primary Chinese
+
+    function selectSection(key) {
+      if (currentSectionKey) {
+        saveCurrentSectionState();
+      }
+      currentSectionKey = key;
+      
+      // Update Buttons UI
+      document.querySelectorAll('.section-btn').forEach(btn => {
+        if (btn.dataset.section === key) {
+          btn.classList.add('border-cathedral-800', 'bg-cathedral-50', 'text-cathedral-800', 'ring-2', 'ring-cathedral-800/20');
+          btn.classList.remove('border-slate-200');
+        } else {
+          btn.classList.remove('border-cathedral-800', 'bg-cathedral-50', 'text-cathedral-800', 'ring-2', 'ring-cathedral-800/20');
+          btn.classList.add('border-slate-200');
+        }
+      });
+
+      renderCourseCards();
+      restoreCurrentSectionState();
+    }
+
+    function renderCourseCards() {
+      const data = COURSE_DATABASE[currentSectionKey];
+      const container = document.getElementById('course-cards-container');
+      
+      let html = `
+        <div class="flex items-center justify-between bg-cathedral-50/80 p-4 rounded-2xl border border-cathedral-100">
+          <div>
+            <h4 class="font-bold text-cathedral-900 text-sm sm:text-base flex items-center gap-2">
+              <span>【${data.title}】專屬特色課程提煉審核</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-cathedral-800 text-white font-normal">共 3 門推薦</span>
+            </h4>
+            <p class="text-xs text-cathedral-600 mt-0.5">${data.desc}</p>
+          </div>
+          <span class="text-xs text-emerald-700 font-semibold bg-emerald-100 px-2.5 py-1 rounded-lg">
+            ✓ 教研處已預填完畢
+          </span>
+        </div>
+      `;
+
+      data.courses.forEach((c, idx) => {
+        html += `
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition-all hover:border-cathedral-600" id="card-box-${idx}">
+            <!-- Card Header -->
+            <div class="bg-slate-50 border-b border-slate-100 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div class="flex items-center gap-2.5">
+                <span class="w-6 h-6 rounded-full bg-cathedral-800 text-white text-xs font-bold flex items-center justify-center">
+                  ${idx + 1}
+                </span>
+                <div>
+                  <h5 class="font-bold text-slate-900 text-sm sm:text-base">${c.nameZh}</h5>
+                  <p class="text-xs text-slate-500 font-mono">${c.nameEn}</p>
+                </div>
+              </div>
+              
+              <!-- Adoption Radio / Switch -->
+              <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-xs">
+                <label class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 cursor-pointer">
+                  <input type="radio" name="adopt-mode-${idx}" value="adopt" checked onchange="toggleEditMode(${idx}, false)" class="text-cathedral-800 focus:ring-cathedral-600">
+                  <span>✓ 直接採用教研處建議</span>
+                </label>
+                <span class="text-slate-200">|</span>
+                <label class="inline-flex items-center gap-1.5 text-xs text-slate-600 cursor-pointer hover:text-cathedral-800">
+                  <input type="radio" name="adopt-mode-${idx}" value="edit" onchange="toggleEditMode(${idx}, true)" class="text-cathedral-800 focus:ring-cathedral-600">
+                  <span>✎ 線上微調</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Card Body: Display View -->
+            <div class="p-5 sm:p-6 space-y-4" id="view-panel-${idx}">
+              <div>
+                <span class="text-[11px] font-bold text-cathedral-800 uppercase tracking-wider block mb-1">【一句話核心理念】</span>
+                <p class="text-sm font-semibold text-slate-800 bg-amber-50/60 p-2.5 rounded-xl border border-amber-200/60">${c.concept}</p>
+              </div>
+
+              <div>
+                <span class="text-[11px] font-bold text-cathedral-800 uppercase tracking-wider block mb-1">【三大特色亮點】</span>
+                <ul class="space-y-1.5 text-xs text-slate-700">
+                  ${c.highlights.map(h => `<li class="flex items-start gap-2"><span class="text-cathedral-800 font-bold">•</span><span>${h}</span></li>`).join('')}
+                </ul>
+              </div>
+
+              <div>
+                <span class="text-[11px] font-bold text-cathedral-800 uppercase tracking-wider block mb-1">【學生成長 / 家長心聲短評】</span>
+                <p class="text-xs text-slate-600 italic bg-slate-50 p-2.5 rounded-xl border border-slate-100">${c.quote}</p>
+              </div>
+            </div>
+
+            <!-- Card Body: Edit View (Hidden by default) -->
+            <div class="p-5 sm:p-6 space-y-3 bg-slate-50/50 border-t border-slate-100 hidden" id="edit-panel-${idx}">
+              <div class="text-xs font-bold text-crimson-700 mb-2">✎ 主任微調編輯區（修改後的內容將自動替代預設文案）：</div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">課程名稱 (中/英文)：</label>
+                <input type="text" id="edit-name-${idx}" value="${c.nameZh}" class="w-full rounded-lg border border-slate-300 p-2 text-xs focus:ring-1 focus:ring-cathedral-800">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">一句話核心理念 (20字內)：</label>
+                <input type="text" id="edit-concept-${idx}" value="${c.concept}" class="w-full rounded-lg border border-slate-300 p-2 text-xs focus:ring-1 focus:ring-cathedral-800">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">三大亮點 (以分號或換行區分)：</label>
+                <textarea id="edit-highlights-${idx}" rows="3" class="w-full rounded-lg border border-slate-300 p-2 text-xs focus:ring-1 focus:ring-cathedral-800">${c.highlights.join('\n')}</textarea>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">學生成長/家長回饋短評：</label>
+                <input type="text" id="edit-quote-${idx}" value="${c.quote}" class="w-full rounded-lg border border-slate-300 p-2 text-xs focus:ring-1 focus:ring-cathedral-800">
+              </div>
+            </div>
+
+            <!-- Card Footer: Photo Upload & Support (Max 2 Photos) -->
+            <div class="bg-slate-50/80 p-4 sm:p-5 border-t border-slate-100 space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                      <span>📸 課程實景照片上傳</span>
+                      <span class="text-[11px] font-normal text-slate-500">（最多 2 張，每張建議橫版高畫質）</span>
+                    </span>
+                    <span id="photo-count-badge-${idx}" class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">0/2 張</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">
+                    <strong class="text-slate-600">建議內容：</strong>${c.photoTip}
+                  </p>
+                </div>
+                <div class="shrink-0">
+                  <label class="inline-flex items-center gap-1.5 cursor-pointer bg-white px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs text-slate-700 hover:border-cathedral-600 transition-all">
+                    <input type="checkbox" id="need-photo-${idx}" onchange="toggleNeedPhoto(${idx})" class="text-cathedral-800 rounded border-slate-300">
+                    <span class="font-semibold text-amber-700">無現成照片，請形象組入班抓拍</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Upload Area & Previews -->
+              <div id="photo-upload-wrapper-${idx}" class="pt-1">
+                <input type="file" id="file-input-${idx}" accept="image/*" multiple class="hidden" onchange="handleFileSelect(event, ${idx})">
+                
+                <div class="flex flex-wrap items-center gap-3" id="preview-grid-${idx}">
+                  <!-- Dynamic photo cards injected by renderPhotoGrid -->
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      if (data.summary) {
+        html += `
+          <div class="bg-gradient-to-r from-amber-50 to-orange-50 p-5 rounded-2xl border border-amber-200/80 shadow-xs flex items-start gap-3 mt-2">
+            <span class="text-2xl mt-0.5">📌</span>
+            <div>
+              <h5 class="text-sm font-bold text-amber-900 mb-1">【學部總結 ‧ 幼小中奠基願景】</h5>
+              <p class="text-xs sm:text-sm text-amber-800 leading-relaxed font-medium">${data.summary.replace(/\n/g, '<br>')}</p>
+            </div>
+          </div>
+        `;
+      }
+
+      container.innerHTML = html;
+
+      // Initialize photo previews for each of the 3 cards
+      [0, 1, 2].forEach(idx => renderPhotoGrid(idx));
+    }
+
+    // Course Photos Store & Form States Store (Persistent in localStorage)
+    let coursePhotos = {};      // Key: `${sectionKey}_${courseIdx}` => [{ name, size, dataUrl }]
+    let sectionStates = {};     // Key: sectionKey => { director, contact, notes, courses: [...] }
+    let submissions = {};       // Key: sectionKey => { timestamp, director, totalPhotos }
+
+    function loadStoredData() {
+      try {
+        const savedPhotos = localStorage.getItem('cdsj5_course_photos');
+        if (savedPhotos) coursePhotos = JSON.parse(savedPhotos);
+
+        const savedStates = localStorage.getItem('cdsj5_section_states');
+        if (savedStates) sectionStates = JSON.parse(savedStates);
+
+        const savedSubmissions = localStorage.getItem('cdsj5_submissions');
+        if (savedSubmissions) submissions = JSON.parse(savedSubmissions);
+      } catch (err) {
+        console.warn('Load stored data warning:', err);
+      }
+    }
+
+    function saveStoredData() {
+      try {
+        localStorage.setItem('cdsj5_course_photos', JSON.stringify(coursePhotos));
+        localStorage.setItem('cdsj5_section_states', JSON.stringify(sectionStates));
+        localStorage.setItem('cdsj5_submissions', JSON.stringify(submissions));
+      } catch (err) {
+        console.warn('Storage save warning (quota):', err);
+      }
+    }
+
+    function getPhotos(idx) {
+      const key = `${currentSectionKey}_${idx}`;
+      if (!coursePhotos[key]) coursePhotos[key] = [];
+      return coursePhotos[key];
+    }
+
+    function triggerFileInput(idx) {
+      const input = document.getElementById(`file-input-${idx}`);
+      if (input) input.click();
+    }
+
+    function compressImage(file, maxWidth = 1000, maxHeight = 1000, quality = 0.75) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+            if (width > height) {
+              if (width > maxWidth) {
+                height = Math.round((height * maxWidth) / width);
+                width = maxWidth;
+              }
+            } else {
+              if (height > maxHeight) {
+                width = Math.round((width * maxHeight) / height);
+                height = maxHeight;
+              }
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            const dataUrl = canvas.toDataURL('image/jpeg', quality);
+            resolve({
+              name: file.name,
+              size: Math.round(dataUrl.length * 0.75),
+              dataUrl: dataUrl
+            });
+          };
+          img.onerror = reject;
+          img.src = e.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function handleFileSelect(event, idx) {
+      const files = Array.from(event.target.files || []);
+      if (!files.length) return;
+
+      const photos = getPhotos(idx);
+      const remainingSlots = 2 - photos.length;
+
+      if (remainingSlots <= 0) {
+        alert('每個特色課程最多上傳 2 張照片！若需更換請先點擊已有照片旁的「✕」刪除。');
+        if (event.target) event.target.value = '';
+        return;
+      }
+
+      const filesToProcess = files.slice(0, remainingSlots);
+      if (files.length > remainingSlots) {
+        alert(`已為您選取前 ${remainingSlots} 張照片（每門課程限額 2 張）。`);
+      }
+
+      for (const file of filesToProcess) {
+        if (!file.type.startsWith('image/')) {
+          alert(`檔案「${file.name}」不是圖片格式，已略過。`);
+          continue;
+        }
+        try {
+          const compressed = await compressImage(file);
+          photos.push(compressed);
+        } catch (err) {
+          console.error('Image compression error:', err);
+        }
+      }
+
+      // Automatically uncheck "need-photo" if user uploads photos
+      const needPhotoCheck = document.getElementById(`need-photo-${idx}`);
+      if (needPhotoCheck && needPhotoCheck.checked && photos.length > 0) {
+        needPhotoCheck.checked = false;
+        toggleNeedPhoto(idx);
+      }
+
+      if (event.target) event.target.value = '';
+      
+      saveStoredData();
+      renderPhotoGrid(idx);
+      updateStatusBar(currentSectionKey);
+    }
+
+    function handleDrop(event, idx) {
+      event.preventDefault();
+      const dt = event.dataTransfer;
+      if (dt && dt.files && dt.files.length) {
+        handleFileSelect({ target: { files: dt.files } }, idx);
+      }
+    }
+
+    function removePhoto(courseIdx, photoIdx) {
+      const photos = getPhotos(courseIdx);
+      photos.splice(photoIdx, 1);
+      saveStoredData();
+      renderPhotoGrid(courseIdx);
+      updateStatusBar(currentSectionKey);
+    }
+
+    function toggleNeedPhoto(idx) {
+      const isChecked = document.getElementById(`need-photo-${idx}`).checked;
+      const uploadWrapper = document.getElementById(`photo-upload-wrapper-${idx}`);
+      if (uploadWrapper) {
+        if (isChecked) {
+          uploadWrapper.classList.add('opacity-50');
+        } else {
+          uploadWrapper.classList.remove('opacity-50');
+        }
+      }
+      saveCurrentSectionState();
+    }
+
+    function renderPhotoGrid(idx) {
+      const container = document.getElementById(`preview-grid-${idx}`);
+      const countBadge = document.getElementById(`photo-count-badge-${idx}`);
+      if (!container) return;
+
+      const photos = getPhotos(idx);
+      if (countBadge) {
+        countBadge.innerText = `${photos.length}/2 張`;
+        if (photos.length === 2) {
+          countBadge.className = 'text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800';
+        } else if (photos.length === 1) {
+          countBadge.className = 'text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800';
+        } else {
+          countBadge.className = 'text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700';
+        }
+      }
+
+      let html = '';
+      photos.forEach((p, pIdx) => {
+        html += `
+          <div class="relative bg-white p-2 rounded-xl border border-slate-200 shadow-xs flex items-center gap-2.5 transition-all hover:border-cathedral-600 group">
+            <div class="relative cursor-pointer shrink-0" onclick="openLightbox('${currentSectionKey}', ${idx}, ${pIdx})" title="點擊放大全螢幕檢視">
+              <img src="${p.dataUrl}" alt="${p.name}" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-lg border border-slate-100 shadow-2xs group-hover:ring-2 group-hover:ring-cathedral-600 transition-all">
+              <span class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 rounded-lg flex items-center justify-center text-white text-xs font-bold transition-opacity">🔍</span>
+            </div>
+            <div class="text-[11px] max-w-[130px] sm:max-w-[190px]">
+              <p class="font-semibold text-slate-800 truncate cursor-pointer hover:text-cathedral-800" onclick="openLightbox('${currentSectionKey}', ${idx}, ${pIdx})" title="${p.name}">${p.name}</p>
+              <p class="text-slate-400 text-[10px]">${(p.size / 1024).toFixed(0)} KB ‧ 常駐本機</p>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="inline-block text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md font-bold">✓ 照片 ${pIdx + 1}/2</span>
+                <button type="button" onclick="openLightbox('${currentSectionKey}', ${idx}, ${pIdx})" class="text-[10px] text-cathedral-700 hover:underline font-semibold">看大圖</button>
+              </div>
+            </div>
+            <button type="button" onclick="removePhoto(${idx}, ${pIdx})" class="p-1.5 text-slate-400 hover:text-crimson-600 hover:bg-crimson-50 rounded-lg transition-all ml-1" title="刪除照片">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+            </button>
+          </div>
+        `;
+      });
+
+      if (photos.length < 2) {
+        html += `
+          <button type="button" onclick="triggerFileInput(${idx})" ondragover="event.preventDefault()" ondrop="handleDrop(event, ${idx})" class="px-3.5 py-2.5 border-2 border-dashed border-slate-300 hover:border-cathedral-600 hover:bg-white rounded-xl text-slate-600 flex items-center justify-center gap-2 text-xs font-medium transition-all group">
+            <svg class="w-4 h-4 text-slate-400 group-hover:text-cathedral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+            <span>${photos.length === 0 ? '點擊或拖曳上傳照片（最多2張）' : '繼續添加第 2 張 (1/2)'}</span>
+          </button>
+        `;
+      } else {
+        html += `
+          <div class="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-xl font-medium flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>已滿 2 張 ‧ 已常駐頁面</span>
+          </div>
+        `;
+      }
+
+      container.innerHTML = html;
+    }
+
+    function toggleEditMode(idx, isEdit) {
+      const viewPanel = document.getElementById(`view-panel-${idx}`);
+      const editPanel = document.getElementById(`edit-panel-${idx}`);
+      if (isEdit) {
+        viewPanel.classList.add('hidden');
+        editPanel.classList.remove('hidden');
+      } else {
+        viewPanel.classList.remove('hidden');
+        editPanel.classList.add('hidden');
+      }
+      saveCurrentSectionState();
+    }
+
+    // Lightbox Controls for HD Presentation
+    function openLightbox(secKey, courseIdx, photoIdx) {
+      const key = `${secKey}_${courseIdx}`;
+      const list = coursePhotos[key] || [];
+      const photo = list[photoIdx];
+      if (!photo) return;
+
+      const data = COURSE_DATABASE[secKey];
+      const course = data.courses[courseIdx];
+
+      document.getElementById('lightbox-badge').innerText = data.title;
+      document.getElementById('lightbox-title').innerText = `${course.nameZh} ‧ 照片 (${photoIdx + 1}/${list.length})`;
+      document.getElementById('lightbox-img').src = photo.dataUrl;
+      document.getElementById('lightbox-meta').innerText = `${photo.name} ‧ ${(photo.size / 1024).toFixed(0)} KB ‧ 高解析實景模式`;
+
+      document.getElementById('photo-lightbox-modal').classList.remove('hidden');
+    }
+
+    function closeLightboxDirect() {
+      document.getElementById('photo-lightbox-modal').classList.add('hidden');
+    }
+
+    function closeLightbox(event) {
+      if (event.target.id === 'photo-lightbox-modal') {
+        closeLightboxDirect();
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightboxDirect();
+    });
+
+    // Export formatted report to clipboard
+    function copyFormattedReport() {
+      const director = document.getElementById('director-name').value || '（未填寫主任）';
+      const contact = document.getElementById('director-contact').value || '（未填寫分機）';
+      const data = COURSE_DATABASE[currentSectionKey];
+
+      let text = `【聖若瑟五校 ‧ 官方網站五大學部專區特色重點課程確認表】\n`;
+      text += `學部名稱：${data.title}\n`;
+      text += `確認主任：${director}（聯絡分機：${contact}）\n`;
+      text += `提交時間：${new Date().toLocaleString()}\n`;
+      text += `--------------------------------------------------------\n`;
+
+      data.courses.forEach((c, idx) => {
+        const isEdit = document.querySelector(`input[name="adopt-mode-${idx}"]:checked`).value === 'edit';
+        const needPhoto = document.getElementById(`need-photo-${idx}`).checked;
+        const photos = getPhotos(idx);
+        
+        const name = isEdit ? document.getElementById(`edit-name-${idx}`).value : c.nameZh;
+        const concept = isEdit ? document.getElementById(`edit-concept-${idx}`).value : c.concept;
+        const highlights = isEdit ? document.getElementById(`edit-highlights-${idx}`).value : c.highlights.join('； ');
+        const quote = isEdit ? document.getElementById(`edit-quote-${idx}`).value : c.quote;
+
+        let photoInfo = '';
+        if (needPhoto) {
+          photoInfo = '【需形象組入班拍攝】';
+        } else if (photos.length > 0) {
+          photoInfo = `【已上傳 ${photos.length} 張實景照片（${photos.map(p => p.name).join('、')}）】`;
+        } else {
+          photoInfo = '【學部自行提供高畫質原圖】';
+        }
+
+        text += `【特色重點課程 ${idx + 1}】：${name}\n`;
+        text += `▪ 核心理念：${concept}\n`;
+        text += `▪ 特色亮點：${highlights}\n`;
+        text += `▪ 學生心聲：${quote}\n`;
+        text += `▪ 攝影協調需求：${photoInfo}\n\n`;
+      });
+
+      const notes = document.getElementById('extra-notes').value;
+      if (notes) text += `【主任補充建議】：${notes}\n`;
+      if (data.summary) text += `【學部總結】：${data.summary}\n`;
+      text += `--------------------------------------------------------\n`;
+      text += `確認聲明：本學部已審定上述3項特色課程，作為新校網專區呈現內容。`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        alert('✓ 已成功複製整份格式化提報文本！您可以直接貼到微信、WhatsApp 或電子郵件傳送給教研處！');
+      }).catch(() => {
+        alert('請手動選取並複製內容。');
+      });
+    }
+
+    function printOrExportDoc() {
+      window.print();
+    }
+
+    const APPS_SCRIPT_WEBAPP_URL = 'https://script.google.com/a/macros/cdsj5.edu.mo/s/AKfycbxTiN6Vv_NUugL40n2KetLVmm6DSDJf2P-Ot8dJnnZImJAs4z8d3XoOmmKgO37xjrAm8w/exec';
+
+    // Form State Persistence Engine
+    function saveCurrentSectionState() {
+      if (!currentSectionKey) return;
+      const directorEl = document.getElementById('director-name');
+      const contactEl = document.getElementById('director-contact');
+      const notesEl = document.getElementById('extra-notes');
+
+      const courseList = [];
+      for (let i = 0; i < 3; i++) {
+        const adoptRadio = document.querySelector(`input[name="adopt-mode-${i}"]:checked`);
+        const adoptMode = adoptRadio ? adoptRadio.value : 'adopt';
+        const nameEl = document.getElementById(`edit-name-${i}`);
+        const conceptEl = document.getElementById(`edit-concept-${i}`);
+        const highlightsEl = document.getElementById(`edit-highlights-${i}`);
+        const quoteEl = document.getElementById(`edit-quote-${i}`);
+        const needPhotoEl = document.getElementById(`need-photo-${i}`);
+
+        courseList.push({
+          adoptMode: adoptMode,
+          name: nameEl ? nameEl.value : '',
+          concept: conceptEl ? conceptEl.value : '',
+          highlights: highlightsEl ? highlightsEl.value : '',
+          quote: quoteEl ? quoteEl.value : '',
+          needPhoto: needPhotoEl ? needPhotoEl.checked : false
+        });
+      }
+
+      sectionStates[currentSectionKey] = {
+        director: directorEl ? directorEl.value : '',
+        contact: contactEl ? contactEl.value : '',
+        notes: notesEl ? notesEl.value : '',
+        courses: courseList
+      };
+
+      saveStoredData();
+    }
+
+    function restoreCurrentSectionState() {
+      const state = sectionStates[currentSectionKey];
+      const directorEl = document.getElementById('director-name');
+      const contactEl = document.getElementById('director-contact');
+      const notesEl = document.getElementById('extra-notes');
+
+      if (state) {
+        if (directorEl && state.director) directorEl.value = state.director;
+        if (contactEl && state.contact) contactEl.value = state.contact;
+        if (notesEl && state.notes) notesEl.value = state.notes;
+
+        if (state.courses && state.courses.length) {
+          state.courses.forEach((cState, i) => {
+            if (!cState) return;
+            if (cState.adoptMode === 'edit') {
+              const editRadio = document.querySelector(`input[name="adopt-mode-${i}"][value="edit"]`);
+              if (editRadio) {
+                editRadio.checked = true;
+                toggleEditMode(i, true);
+              }
+            }
+            if (cState.name) {
+              const el = document.getElementById(`edit-name-${i}`);
+              if (el) el.value = cState.name;
+            }
+            if (cState.concept) {
+              const el = document.getElementById(`edit-concept-${i}`);
+              if (el) el.value = cState.concept;
+            }
+            if (cState.highlights) {
+              const el = document.getElementById(`edit-highlights-${i}`);
+              if (el) el.value = cState.highlights;
+            }
+            if (cState.quote) {
+              const el = document.getElementById(`edit-quote-${i}`);
+              if (el) el.value = cState.quote;
+            }
+            if (cState.needPhoto) {
+              const el = document.getElementById(`need-photo-${i}`);
+              if (el) {
+                el.checked = true;
+                toggleNeedPhoto(i);
+              }
+            }
+          });
+        }
+      }
+
+      // Render photos for cards 0, 1, 2
+      [0, 1, 2].forEach(i => renderPhotoGrid(i));
+      updateStatusBar(currentSectionKey);
+    }
+
+    function updateStatusBar(secKey) {
+      const bar = document.getElementById('section-status-bar');
+      const icon = document.getElementById('status-icon-badge');
+      const mainTitle = document.getElementById('status-main-title');
+      const pill = document.getElementById('status-pill');
+      const subDesc = document.getElementById('status-sub-desc');
+      if (!bar) return;
+
+      const data = COURSE_DATABASE[secKey];
+      const submission = submissions[secKey];
+      const p0 = getPhotos(0);
+      const p1 = getPhotos(1);
+      const p2 = getPhotos(2);
+      const totalPhotos = p0.length + p1.length + p2.length;
+
+      if (submission) {
+        icon.innerHTML = '🟢';
+        icon.className = 'w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 border border-emerald-300 flex items-center justify-center text-xl shrink-0';
+        mainTitle.innerHTML = `【${data.title}】已完成確認提交 ‧ 照片常駐中`;
+        pill.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200';
+        pill.innerText = `✓ 照片常駐 (${totalPhotos}張)`;
+        subDesc.innerHTML = `提交負責人：<strong>${submission.director || '主任'}</strong> ‧ 提交時間：${submission.timestamp} ‧ 照片與內容常駐保留於此頁面，隨時可供匯報`;
+        bar.className = 'bg-emerald-50/90 rounded-2xl shadow-xs border border-emerald-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all';
+      } else if (totalPhotos > 0 || (sectionStates[secKey] && sectionStates[secKey].director)) {
+        icon.innerHTML = '🟡';
+        icon.className = 'w-10 h-10 rounded-xl bg-amber-100 text-amber-700 border border-amber-300 flex items-center justify-center text-xl shrink-0';
+        mainTitle.innerHTML = `【${data.title}】本機編輯與照片已常駐存檔`;
+        pill.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200';
+        pill.innerText = totalPhotos > 0 ? `已常駐 ${totalPhotos} 張照片` : '草稿已存檔';
+        subDesc.innerHTML = `照片與文案已即時保存在此瀏覽器，關閉分頁或重新整理絕不丟失，確認無誤後點下方「正式送出」`;
+        bar.className = 'bg-amber-50/70 rounded-2xl shadow-xs border border-amber-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all';
+      } else {
+        icon.innerHTML = '💾';
+        icon.className = 'w-10 h-10 rounded-xl bg-slate-100 text-slate-600 border border-slate-200 flex items-center justify-center text-xl shrink-0';
+        mainTitle.innerHTML = `【${data.title}】教研處預設建議方案`;
+        pill.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200';
+        pill.innerText = '等待主任審核';
+        subDesc.innerHTML = `主任無需動筆即可直接確認送出；若有照片可點擊下方直接上傳，系統將自動常駐保留。`;
+        bar.className = 'bg-white rounded-2xl shadow-xs border border-slate-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all';
+      }
+    }
+
+    function resetCurrentSection() {
+      const data = COURSE_DATABASE[currentSectionKey];
+      if (!confirm(`確定要清除【${data.title}】的自訂修改與本機照片，恢復教研處預設建議嗎？`)) {
+        return;
+      }
+      [0, 1, 2].forEach(i => {
+        delete coursePhotos[`${currentSectionKey}_${i}`];
+      });
+      delete sectionStates[currentSectionKey];
+      delete submissions[currentSectionKey];
+
+      saveStoredData();
+
+      document.getElementById('director-name').value = '';
+      document.getElementById('director-contact').value = '';
+      document.getElementById('extra-notes').value = '';
+      document.getElementById('confirm-check').checked = false;
+
+      renderCourseCards();
+      restoreCurrentSectionState();
+      alert(`✓ 【${data.title}】已恢復為教研處初始建議內容。`);
+    }
+
+    async function syncFromCloud() {
+      const btn = document.getElementById('sync-cloud-btn');
+      const btnText = document.getElementById('sync-cloud-btn-text');
+      if (btn) btn.disabled = true;
+      if (btnText) btnText.innerText = '連線雲端中...';
+
+      try {
+        const res = await fetch(APPS_SCRIPT_WEBAPP_URL + '?action=getLatest');
+        const json = await res.json();
+        if (json && json.status === 'success' && json.data) {
+          const cloudData = json.data;
+          let syncCount = 0;
+
+          Object.keys(cloudData).forEach(secKey => {
+            const item = cloudData[secKey];
+            if (!item) return;
+            syncCount++;
+
+            submissions[secKey] = {
+              timestamp: item.timestamp,
+              director: item.director,
+              totalPhotos: (item.c1_photos?.length || 0) + (item.c2_photos?.length || 0) + (item.c3_photos?.length || 0)
+            };
+
+            if (!sectionStates[secKey]) sectionStates[secKey] = {};
+            sectionStates[secKey].director = item.director;
+            sectionStates[secKey].contact = item.contact;
+            sectionStates[secKey].notes = item.notes;
+
+            const cPhotos = [item.c1_photos, item.c2_photos, item.c3_photos];
+            cPhotos.forEach((links, cIdx) => {
+              if (links && links.length) {
+                const key = `${secKey}_${cIdx}`;
+                coursePhotos[key] = links.map((link, pIdx) => ({
+                  name: `雲端實景照_${pIdx + 1}.jpg`,
+                  size: 150 * 1024,
+                  dataUrl: link
+                }));
+              }
+            });
+          });
+
+          saveStoredData();
+          restoreCurrentSectionState();
+          alert(`🎉 雲端同步完成！成功同步 ${syncCount} 個學部的最新填報進度與實景照片，已常駐於您的頁面上！`);
+        } else {
+          alert('雲端目前暫無已送出的紀錄，或試算表尚在初始化中。');
+        }
+      } catch (err) {
+        console.warn('Sync error:', err);
+        alert('提示：目前本機資料已 100% 常駐。若要跨電腦同步雲端，請確保 Google Apps Script 已部署最新版。');
+      } finally {
+        if (btn) btn.disabled = false;
+        if (btnText) btnText.innerText = '雲端同步最新進度';
+      }
+    }
+
+    async function submitForm() {
+      const director = document.getElementById('director-name').value.trim();
+      const confirmCheck = document.getElementById('confirm-check').checked;
+
+      if (!director) {
+        alert('請填寫主任 / 填報負責人姓名！');
+        document.getElementById('director-name').focus();
+        return;
+      }
+
+      if (!confirmCheck) {
+        alert('請勾選第 3 區塊的「核對確認聲明」核取方塊！');
+        document.getElementById('confirm-check').focus();
+        return;
+      }
+
+      saveCurrentSectionState();
+
+      const submitBtn = document.getElementById('submit-btn');
+      const submitBtnText = document.getElementById('submit-btn-text');
+      submitBtn.disabled = true;
+      submitBtnText.innerText = '正在上傳至教研處試算表與照片庫...';
+
+      const data = COURSE_DATABASE[currentSectionKey];
+      const p0 = getPhotos(0);
+      const p1 = getPhotos(1);
+      const p2 = getPhotos(2);
+
+      const payload = {
+        sectionKey: currentSectionKey,
+        sectionTitle: data.title,
+        director: director,
+        contact: document.getElementById('director-contact').value.trim(),
+        notes: document.getElementById('extra-notes').value.trim(),
+        
+        c1_name: (document.querySelector('input[name="adopt-mode-0"]:checked').value === 'edit' ? document.getElementById('edit-name-0').value.trim() : data.courses[0].nameZh),
+        c1_concept: (document.querySelector('input[name="adopt-mode-0"]:checked').value === 'edit' ? document.getElementById('edit-concept-0').value.trim() : data.courses[0].concept),
+        c1_highlights: (document.querySelector('input[name="adopt-mode-0"]:checked').value === 'edit' ? document.getElementById('edit-highlights-0').value.trim() : data.courses[0].highlights.join('； ')),
+        c1_photo: document.getElementById('need-photo-0').checked ? '需形象組入班拍攝' : (p0.length > 0 ? `學部已上傳 ${p0.length} 張照片` : '學部自行提供'),
+        c1_images: p0.map(p => ({ name: p.name, dataUrl: p.dataUrl })),
+
+        c2_name: (document.querySelector('input[name="adopt-mode-1"]:checked').value === 'edit' ? document.getElementById('edit-name-1').value.trim() : data.courses[1].nameZh),
+        c2_concept: (document.querySelector('input[name="adopt-mode-1"]:checked').value === 'edit' ? document.getElementById('edit-concept-1').value.trim() : data.courses[1].concept),
+        c2_highlights: (document.querySelector('input[name="adopt-mode-1"]:checked').value === 'edit' ? document.getElementById('edit-highlights-1').value.trim() : data.courses[1].highlights.join('； ')),
+        c2_photo: document.getElementById('need-photo-1').checked ? '需形象組入班拍攝' : (p1.length > 0 ? `學部已上傳 ${p1.length} 張照片` : '學部自行提供'),
+        c2_images: p1.map(p => ({ name: p.name, dataUrl: p.dataUrl })),
+
+        c3_name: (document.querySelector('input[name="adopt-mode-2"]:checked').value === 'edit' ? document.getElementById('edit-name-2').value.trim() : data.courses[2].nameZh),
+        c3_concept: (document.querySelector('input[name="adopt-mode-2"]:checked').value === 'edit' ? document.getElementById('edit-concept-2').value.trim() : data.courses[2].concept),
+        c3_highlights: (document.querySelector('input[name="adopt-mode-2"]:checked').value === 'edit' ? document.getElementById('edit-highlights-2').value.trim() : data.courses[2].highlights.join('； ')),
+        c3_photo: document.getElementById('need-photo-2').checked ? '需形象組入班拍攝' : (p2.length > 0 ? `學部已上傳 ${p2.length} 張照片` : '學部自行提供'),
+        c3_images: p2.map(p => ({ name: p.name, dataUrl: p.dataUrl }))
+      };
+
+      try {
+        if (APPS_SCRIPT_WEBAPP_URL) {
+          await fetch(APPS_SCRIPT_WEBAPP_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+          });
+        }
+      } catch (err) {
+        console.warn('Google Sheet submission note:', err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtnText.innerText = '正式送出確認';
+      }
+
+      // Record submission status locally so it stays permanently
+      const totalPhotos = p0.length + p1.length + p2.length;
+      submissions[currentSectionKey] = {
+        timestamp: new Date().toLocaleString(),
+        director: director,
+        totalPhotos: totalPhotos
+      };
+      saveStoredData();
+      updateStatusBar(currentSectionKey);
+
+      document.getElementById('modal-section-text').innerText = data.title;
+      document.getElementById('modal-director-text').innerText = director;
+      document.getElementById('modal-time-text').innerText = new Date().toLocaleString();
+
+      const modalPhotosEl = document.getElementById('modal-photos-text');
+      if (modalPhotosEl) {
+        modalPhotosEl.innerText = totalPhotos > 0 ? `${totalPhotos} 張實景照片（已常駐保留於系統）` : '未上傳（依勾選需求協調）';
+      }
+
+      document.getElementById('success-modal').classList.remove('hidden');
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('success-modal').classList.add('hidden');
+    }
+
+    // Initialize View & Event Listeners
+    window.addEventListener('DOMContentLoaded', () => {
+      loadStoredData();
+      selectSection('PCS'); // Default to Primary Chinese
+
+      // Setup auto-save event listeners on top-level inputs
+      ['director-name', 'director-contact', 'extra-notes'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', () => {
+            saveCurrentSectionState();
+            updateStatusBar(currentSectionKey);
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
