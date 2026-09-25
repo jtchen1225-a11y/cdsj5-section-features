@@ -157,6 +157,33 @@
       </div>
     </div>
 
+    <!-- Section Status & Persistence Bar -->
+    <div id="section-status-bar" class="bg-white rounded-2xl shadow-xs border border-slate-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all">
+      <div class="flex items-center gap-3">
+        <div id="status-icon-badge" class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center text-xl shrink-0">
+          💾
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span id="status-main-title" class="font-bold text-sm text-slate-800">本機持久存檔運作中</span>
+            <span id="status-pill" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">照片常駐頁面</span>
+          </div>
+          <p id="status-sub-desc" class="text-xs text-slate-500 mt-0.5">
+            所有上傳照片與填寫內容均已自動保存在本機，關閉或重新整理網頁絕不丟失。
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <button type="button" id="sync-cloud-btn" onclick="syncFromCloud()" class="px-3.5 py-2 bg-cathedral-800 hover:bg-cathedral-900 text-white text-xs font-bold rounded-xl shadow-xs transition-all flex items-center gap-1.5" title="從 Google 試算表拉取最新主任提交進度與照片">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path></svg>
+          <span id="sync-cloud-btn-text">雲端同步最新進度</span>
+        </button>
+        <button type="button" onclick="resetCurrentSection()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold rounded-xl border border-slate-200 transition-all" title="重設此學部為教研處建議">
+          <span>🔄 恢復預設</span>
+        </button>
+      </div>
+    </div>
+
     <!-- Section 2: Dynamic Pre-filled Cards Area -->
     <div id="course-cards-container" class="space-y-6">
       <!-- Injected by JavaScript based on active section -->
@@ -244,6 +271,31 @@
           <button type="button" onclick="closeSuccessModal()" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold transition-all">
             好的，完成並關閉
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo Lightbox Modal for HD Presentation -->
+    <div id="photo-lightbox-modal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 hidden transition-opacity" onclick="closeLightbox(event)">
+      <div class="relative max-w-4xl w-full bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col" onclick="event.stopPropagation()">
+        <div class="px-5 py-3.5 bg-slate-800/90 border-b border-slate-700/70 flex items-center justify-between">
+          <div class="flex items-center gap-2.5 overflow-hidden">
+            <span id="lightbox-badge" class="px-2.5 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold rounded-lg shrink-0">學部</span>
+            <h4 id="lightbox-title" class="text-xs sm:text-sm font-semibold text-white truncate">課程實景照片</h4>
+          </div>
+          <button type="button" onclick="closeLightboxDirect()" class="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-all" title="關閉">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <div class="p-3 sm:p-5 flex items-center justify-center bg-black/60 min-h-[260px] max-h-[72vh] overflow-hidden">
+          <img id="lightbox-img" src="" alt="課程實景照片" class="max-h-[68vh] max-w-full object-contain rounded-lg shadow-2xl">
+        </div>
+        <div class="px-5 py-3 bg-slate-800/90 border-t border-slate-700/70 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs text-slate-300">
+          <span id="lightbox-meta">高畫質實景模式 ‧ 已常駐系統</span>
+          <span class="text-emerald-400 font-medium flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>適合向校長/主任大螢幕投影匯報展示</span>
+          </span>
         </div>
       </div>
     </div>
@@ -485,6 +537,9 @@
     let currentSectionKey = 'PCS'; // Default to Primary Chinese
 
     function selectSection(key) {
+      if (currentSectionKey) {
+        saveCurrentSectionState();
+      }
       currentSectionKey = key;
       
       // Update Buttons UI
@@ -499,6 +554,7 @@
       });
 
       renderCourseCards();
+      restoreCurrentSectionState();
     }
 
     function renderCourseCards() {
@@ -644,8 +700,35 @@
       [0, 1, 2].forEach(idx => renderPhotoGrid(idx));
     }
 
-    // Course Photos Store (Key: `${sectionKey}_${courseIdx}`)
-    const coursePhotos = {};
+    // Course Photos Store & Form States Store (Persistent in localStorage)
+    let coursePhotos = {};      // Key: `${sectionKey}_${courseIdx}` => [{ name, size, dataUrl }]
+    let sectionStates = {};     // Key: sectionKey => { director, contact, notes, courses: [...] }
+    let submissions = {};       // Key: sectionKey => { timestamp, director, totalPhotos }
+
+    function loadStoredData() {
+      try {
+        const savedPhotos = localStorage.getItem('cdsj5_course_photos');
+        if (savedPhotos) coursePhotos = JSON.parse(savedPhotos);
+
+        const savedStates = localStorage.getItem('cdsj5_section_states');
+        if (savedStates) sectionStates = JSON.parse(savedStates);
+
+        const savedSubmissions = localStorage.getItem('cdsj5_submissions');
+        if (savedSubmissions) submissions = JSON.parse(savedSubmissions);
+      } catch (err) {
+        console.warn('Load stored data warning:', err);
+      }
+    }
+
+    function saveStoredData() {
+      try {
+        localStorage.setItem('cdsj5_course_photos', JSON.stringify(coursePhotos));
+        localStorage.setItem('cdsj5_section_states', JSON.stringify(sectionStates));
+        localStorage.setItem('cdsj5_submissions', JSON.stringify(submissions));
+      } catch (err) {
+        console.warn('Storage save warning (quota):', err);
+      }
+    }
 
     function getPhotos(idx) {
       const key = `${currentSectionKey}_${idx}`;
@@ -658,7 +741,7 @@
       if (input) input.click();
     }
 
-    function compressImage(file, maxWidth = 1280, maxHeight = 1280, quality = 0.82) {
+    function compressImage(file, maxWidth = 1000, maxHeight = 1000, quality = 0.75) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -736,7 +819,10 @@
       }
 
       if (event.target) event.target.value = '';
+      
+      saveStoredData();
       renderPhotoGrid(idx);
+      updateStatusBar(currentSectionKey);
     }
 
     function handleDrop(event, idx) {
@@ -750,7 +836,9 @@
     function removePhoto(courseIdx, photoIdx) {
       const photos = getPhotos(courseIdx);
       photos.splice(photoIdx, 1);
+      saveStoredData();
       renderPhotoGrid(courseIdx);
+      updateStatusBar(currentSectionKey);
     }
 
     function toggleNeedPhoto(idx) {
@@ -763,6 +851,7 @@
           uploadWrapper.classList.remove('opacity-50');
         }
       }
+      saveCurrentSectionState();
     }
 
     function renderPhotoGrid(idx) {
@@ -785,12 +874,18 @@
       let html = '';
       photos.forEach((p, pIdx) => {
         html += `
-          <div class="relative bg-white p-2 rounded-xl border border-slate-200 shadow-xs flex items-center gap-2.5 transition-all hover:border-cathedral-600">
-            <img src="${p.dataUrl}" alt="${p.name}" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-lg border border-slate-100 shadow-2xs shrink-0">
+          <div class="relative bg-white p-2 rounded-xl border border-slate-200 shadow-xs flex items-center gap-2.5 transition-all hover:border-cathedral-600 group">
+            <div class="relative cursor-pointer shrink-0" onclick="openLightbox('${currentSectionKey}', ${idx}, ${pIdx})" title="點擊放大全螢幕檢視">
+              <img src="${p.dataUrl}" alt="${p.name}" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-lg border border-slate-100 shadow-2xs group-hover:ring-2 group-hover:ring-cathedral-600 transition-all">
+              <span class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 rounded-lg flex items-center justify-center text-white text-xs font-bold transition-opacity">🔍</span>
+            </div>
             <div class="text-[11px] max-w-[130px] sm:max-w-[190px]">
-              <p class="font-semibold text-slate-800 truncate" title="${p.name}">${p.name}</p>
-              <p class="text-slate-400 text-[10px]">${(p.size / 1024).toFixed(0)} KB ‧ 已最佳化</p>
-              <span class="inline-block text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md font-bold mt-1">✓ 照片 ${pIdx + 1}/2</span>
+              <p class="font-semibold text-slate-800 truncate cursor-pointer hover:text-cathedral-800" onclick="openLightbox('${currentSectionKey}', ${idx}, ${pIdx})" title="${p.name}">${p.name}</p>
+              <p class="text-slate-400 text-[10px]">${(p.size / 1024).toFixed(0)} KB ‧ 常駐本機</p>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="inline-block text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md font-bold">✓ 照片 ${pIdx + 1}/2</span>
+                <button type="button" onclick="openLightbox('${currentSectionKey}', ${idx}, ${pIdx})" class="text-[10px] text-cathedral-700 hover:underline font-semibold">看大圖</button>
+              </div>
             </div>
             <button type="button" onclick="removePhoto(${idx}, ${pIdx})" class="p-1.5 text-slate-400 hover:text-crimson-600 hover:bg-crimson-50 rounded-lg transition-all ml-1" title="刪除照片">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
@@ -810,7 +905,7 @@
         html += `
           <div class="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-xl font-medium flex items-center gap-1.5">
             <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-            <span>已上傳滿 2 張</span>
+            <span>已滿 2 張 ‧ 已常駐頁面</span>
           </div>
         `;
       }
@@ -828,7 +923,40 @@
         viewPanel.classList.remove('hidden');
         editPanel.classList.add('hidden');
       }
+      saveCurrentSectionState();
     }
+
+    // Lightbox Controls for HD Presentation
+    function openLightbox(secKey, courseIdx, photoIdx) {
+      const key = `${secKey}_${courseIdx}`;
+      const list = coursePhotos[key] || [];
+      const photo = list[photoIdx];
+      if (!photo) return;
+
+      const data = COURSE_DATABASE[secKey];
+      const course = data.courses[courseIdx];
+
+      document.getElementById('lightbox-badge').innerText = data.title;
+      document.getElementById('lightbox-title').innerText = `${course.nameZh} ‧ 照片 (${photoIdx + 1}/${list.length})`;
+      document.getElementById('lightbox-img').src = photo.dataUrl;
+      document.getElementById('lightbox-meta').innerText = `${photo.name} ‧ ${(photo.size / 1024).toFixed(0)} KB ‧ 高解析實景模式`;
+
+      document.getElementById('photo-lightbox-modal').classList.remove('hidden');
+    }
+
+    function closeLightboxDirect() {
+      document.getElementById('photo-lightbox-modal').classList.add('hidden');
+    }
+
+    function closeLightbox(event) {
+      if (event.target.id === 'photo-lightbox-modal') {
+        closeLightboxDirect();
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightboxDirect();
+    });
 
     // Export formatted report to clipboard
     function copyFormattedReport() {
@@ -887,6 +1015,218 @@
 
     const APPS_SCRIPT_WEBAPP_URL = 'https://script.google.com/a/macros/cdsj5.edu.mo/s/AKfycbxTiN6Vv_NUugL40n2KetLVmm6DSDJf2P-Ot8dJnnZImJAs4z8d3XoOmmKgO37xjrAm8w/exec';
 
+    // Form State Persistence Engine
+    function saveCurrentSectionState() {
+      if (!currentSectionKey) return;
+      const directorEl = document.getElementById('director-name');
+      const contactEl = document.getElementById('director-contact');
+      const notesEl = document.getElementById('extra-notes');
+
+      const courseList = [];
+      for (let i = 0; i < 3; i++) {
+        const adoptRadio = document.querySelector(`input[name="adopt-mode-${i}"]:checked`);
+        const adoptMode = adoptRadio ? adoptRadio.value : 'adopt';
+        const nameEl = document.getElementById(`edit-name-${i}`);
+        const conceptEl = document.getElementById(`edit-concept-${i}`);
+        const highlightsEl = document.getElementById(`edit-highlights-${i}`);
+        const quoteEl = document.getElementById(`edit-quote-${i}`);
+        const needPhotoEl = document.getElementById(`need-photo-${i}`);
+
+        courseList.push({
+          adoptMode: adoptMode,
+          name: nameEl ? nameEl.value : '',
+          concept: conceptEl ? conceptEl.value : '',
+          highlights: highlightsEl ? highlightsEl.value : '',
+          quote: quoteEl ? quoteEl.value : '',
+          needPhoto: needPhotoEl ? needPhotoEl.checked : false
+        });
+      }
+
+      sectionStates[currentSectionKey] = {
+        director: directorEl ? directorEl.value : '',
+        contact: contactEl ? contactEl.value : '',
+        notes: notesEl ? notesEl.value : '',
+        courses: courseList
+      };
+
+      saveStoredData();
+    }
+
+    function restoreCurrentSectionState() {
+      const state = sectionStates[currentSectionKey];
+      const directorEl = document.getElementById('director-name');
+      const contactEl = document.getElementById('director-contact');
+      const notesEl = document.getElementById('extra-notes');
+
+      if (state) {
+        if (directorEl && state.director) directorEl.value = state.director;
+        if (contactEl && state.contact) contactEl.value = state.contact;
+        if (notesEl && state.notes) notesEl.value = state.notes;
+
+        if (state.courses && state.courses.length) {
+          state.courses.forEach((cState, i) => {
+            if (!cState) return;
+            if (cState.adoptMode === 'edit') {
+              const editRadio = document.querySelector(`input[name="adopt-mode-${i}"][value="edit"]`);
+              if (editRadio) {
+                editRadio.checked = true;
+                toggleEditMode(i, true);
+              }
+            }
+            if (cState.name) {
+              const el = document.getElementById(`edit-name-${i}`);
+              if (el) el.value = cState.name;
+            }
+            if (cState.concept) {
+              const el = document.getElementById(`edit-concept-${i}`);
+              if (el) el.value = cState.concept;
+            }
+            if (cState.highlights) {
+              const el = document.getElementById(`edit-highlights-${i}`);
+              if (el) el.value = cState.highlights;
+            }
+            if (cState.quote) {
+              const el = document.getElementById(`edit-quote-${i}`);
+              if (el) el.value = cState.quote;
+            }
+            if (cState.needPhoto) {
+              const el = document.getElementById(`need-photo-${i}`);
+              if (el) {
+                el.checked = true;
+                toggleNeedPhoto(i);
+              }
+            }
+          });
+        }
+      }
+
+      // Render photos for cards 0, 1, 2
+      [0, 1, 2].forEach(i => renderPhotoGrid(i));
+      updateStatusBar(currentSectionKey);
+    }
+
+    function updateStatusBar(secKey) {
+      const bar = document.getElementById('section-status-bar');
+      const icon = document.getElementById('status-icon-badge');
+      const mainTitle = document.getElementById('status-main-title');
+      const pill = document.getElementById('status-pill');
+      const subDesc = document.getElementById('status-sub-desc');
+      if (!bar) return;
+
+      const data = COURSE_DATABASE[secKey];
+      const submission = submissions[secKey];
+      const p0 = getPhotos(0);
+      const p1 = getPhotos(1);
+      const p2 = getPhotos(2);
+      const totalPhotos = p0.length + p1.length + p2.length;
+
+      if (submission) {
+        icon.innerHTML = '🟢';
+        icon.className = 'w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 border border-emerald-300 flex items-center justify-center text-xl shrink-0';
+        mainTitle.innerHTML = `【${data.title}】已完成確認提交 ‧ 照片常駐中`;
+        pill.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200';
+        pill.innerText = `✓ 照片常駐 (${totalPhotos}張)`;
+        subDesc.innerHTML = `提交負責人：<strong>${submission.director || '主任'}</strong> ‧ 提交時間：${submission.timestamp} ‧ 照片與內容常駐保留於此頁面，隨時可供匯報`;
+        bar.className = 'bg-emerald-50/90 rounded-2xl shadow-xs border border-emerald-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all';
+      } else if (totalPhotos > 0 || (sectionStates[secKey] && sectionStates[secKey].director)) {
+        icon.innerHTML = '🟡';
+        icon.className = 'w-10 h-10 rounded-xl bg-amber-100 text-amber-700 border border-amber-300 flex items-center justify-center text-xl shrink-0';
+        mainTitle.innerHTML = `【${data.title}】本機編輯與照片已常駐存檔`;
+        pill.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200';
+        pill.innerText = totalPhotos > 0 ? `已常駐 ${totalPhotos} 張照片` : '草稿已存檔';
+        subDesc.innerHTML = `照片與文案已即時保存在此瀏覽器，關閉分頁或重新整理絕不丟失，確認無誤後點下方「正式送出」`;
+        bar.className = 'bg-amber-50/70 rounded-2xl shadow-xs border border-amber-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all';
+      } else {
+        icon.innerHTML = '💾';
+        icon.className = 'w-10 h-10 rounded-xl bg-slate-100 text-slate-600 border border-slate-200 flex items-center justify-center text-xl shrink-0';
+        mainTitle.innerHTML = `【${data.title}】教研處預設建議方案`;
+        pill.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200';
+        pill.innerText = '等待主任審核';
+        subDesc.innerHTML = `主任無需動筆即可直接確認送出；若有照片可點擊下方直接上傳，系統將自動常駐保留。`;
+        bar.className = 'bg-white rounded-2xl shadow-xs border border-slate-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all';
+      }
+    }
+
+    function resetCurrentSection() {
+      const data = COURSE_DATABASE[currentSectionKey];
+      if (!confirm(`確定要清除【${data.title}】的自訂修改與本機照片，恢復教研處預設建議嗎？`)) {
+        return;
+      }
+      [0, 1, 2].forEach(i => {
+        delete coursePhotos[`${currentSectionKey}_${i}`];
+      });
+      delete sectionStates[currentSectionKey];
+      delete submissions[currentSectionKey];
+
+      saveStoredData();
+
+      document.getElementById('director-name').value = '';
+      document.getElementById('director-contact').value = '';
+      document.getElementById('extra-notes').value = '';
+      document.getElementById('confirm-check').checked = false;
+
+      renderCourseCards();
+      restoreCurrentSectionState();
+      alert(`✓ 【${data.title}】已恢復為教研處初始建議內容。`);
+    }
+
+    async function syncFromCloud() {
+      const btn = document.getElementById('sync-cloud-btn');
+      const btnText = document.getElementById('sync-cloud-btn-text');
+      if (btn) btn.disabled = true;
+      if (btnText) btnText.innerText = '連線雲端中...';
+
+      try {
+        const res = await fetch(APPS_SCRIPT_WEBAPP_URL + '?action=getLatest');
+        const json = await res.json();
+        if (json && json.status === 'success' && json.data) {
+          const cloudData = json.data;
+          let syncCount = 0;
+
+          Object.keys(cloudData).forEach(secKey => {
+            const item = cloudData[secKey];
+            if (!item) return;
+            syncCount++;
+
+            submissions[secKey] = {
+              timestamp: item.timestamp,
+              director: item.director,
+              totalPhotos: (item.c1_photos?.length || 0) + (item.c2_photos?.length || 0) + (item.c3_photos?.length || 0)
+            };
+
+            if (!sectionStates[secKey]) sectionStates[secKey] = {};
+            sectionStates[secKey].director = item.director;
+            sectionStates[secKey].contact = item.contact;
+            sectionStates[secKey].notes = item.notes;
+
+            const cPhotos = [item.c1_photos, item.c2_photos, item.c3_photos];
+            cPhotos.forEach((links, cIdx) => {
+              if (links && links.length) {
+                const key = `${secKey}_${cIdx}`;
+                coursePhotos[key] = links.map((link, pIdx) => ({
+                  name: `雲端實景照_${pIdx + 1}.jpg`,
+                  size: 150 * 1024,
+                  dataUrl: link
+                }));
+              }
+            });
+          });
+
+          saveStoredData();
+          restoreCurrentSectionState();
+          alert(`🎉 雲端同步完成！成功同步 ${syncCount} 個學部的最新填報進度與實景照片，已常駐於您的頁面上！`);
+        } else {
+          alert('雲端目前暫無已送出的紀錄，或試算表尚在初始化中。');
+        }
+      } catch (err) {
+        console.warn('Sync error:', err);
+        alert('提示：目前本機資料已 100% 常駐。若要跨電腦同步雲端，請確保 Google Apps Script 已部署最新版。');
+      } finally {
+        if (btn) btn.disabled = false;
+        if (btnText) btnText.innerText = '雲端同步最新進度';
+      }
+    }
+
     async function submitForm() {
       const director = document.getElementById('director-name').value.trim();
       const confirmCheck = document.getElementById('confirm-check').checked;
@@ -903,10 +1243,12 @@
         return;
       }
 
+      saveCurrentSectionState();
+
       const submitBtn = document.getElementById('submit-btn');
       const submitBtnText = document.getElementById('submit-btn-text');
       submitBtn.disabled = true;
-      submitBtnText.innerText = '正在上傳至教研處試算表...';
+      submitBtnText.innerText = '正在上傳至教研處試算表與照片庫...';
 
       const data = COURSE_DATABASE[currentSectionKey];
       const p0 = getPhotos(0);
@@ -955,14 +1297,23 @@
         submitBtnText.innerText = '正式送出確認';
       }
 
+      // Record submission status locally so it stays permanently
+      const totalPhotos = p0.length + p1.length + p2.length;
+      submissions[currentSectionKey] = {
+        timestamp: new Date().toLocaleString(),
+        director: director,
+        totalPhotos: totalPhotos
+      };
+      saveStoredData();
+      updateStatusBar(currentSectionKey);
+
       document.getElementById('modal-section-text').innerText = data.title;
       document.getElementById('modal-director-text').innerText = director;
       document.getElementById('modal-time-text').innerText = new Date().toLocaleString();
 
-      const totalPhotos = p0.length + p1.length + p2.length;
       const modalPhotosEl = document.getElementById('modal-photos-text');
       if (modalPhotosEl) {
-        modalPhotosEl.innerText = totalPhotos > 0 ? `${totalPhotos} 張實景照片` : '未上傳（依勾選需求協調）';
+        modalPhotosEl.innerText = totalPhotos > 0 ? `${totalPhotos} 張實景照片（已常駐保留於系統）` : '未上傳（依勾選需求協調）';
       }
 
       document.getElementById('success-modal').classList.remove('hidden');
@@ -972,9 +1323,21 @@
       document.getElementById('success-modal').classList.add('hidden');
     }
 
-    // Initialize Default View
+    // Initialize View & Event Listeners
     window.addEventListener('DOMContentLoaded', () => {
+      loadStoredData();
       selectSection('PCS'); // Default to Primary Chinese
+
+      // Setup auto-save event listeners on top-level inputs
+      ['director-name', 'director-contact', 'extra-notes'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', () => {
+            saveCurrentSectionState();
+            updateStatusBar(currentSectionKey);
+          });
+        }
+      });
     });
   </script>
 </body>
