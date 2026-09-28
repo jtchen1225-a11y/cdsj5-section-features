@@ -489,7 +489,7 @@
       },
       SES: {
         title: "中學英文部 (SES)",
-        desc: "全英思辨模聯演辯、國際學術論文寫作、SDAO全球多元出路",
+        desc: "全英思辨模聯演辯、立足母語中華底蘊、SDAO全球多元出路",
         courses: [
           {
             id: 'SES-1',
@@ -506,16 +506,16 @@
           },
           {
             id: 'SES-2',
-            nameZh: '國際鏈接 ‧ 全英文學術寫作與跨學科專題研究',
-            nameEn: 'Academic Horizons: Advanced Writing & Interdisciplinary Capstone',
-            concept: '接軌國際高等教育學術標準，鋪就通往全球名校的卓越基石。',
+            nameZh: '立足母語底蘊，厚植中華傳統文化，對接升學及實務語言教學。',
+            nameEn: 'Rooted in Chinese Culture: Language Competence & University Pathways',
+            concept: '讓學生以英語探索跨學科議題、提出有根據的觀點，並在交流與實踐中建立自信。',
             highlights: [
-              '系統導入文獻引用規範（APA/MLA），培育嚴謹學術論文行文標準。',
-              '鼓勵學生自選跨學科主題（如AI倫理、生態保育），開展獨立專案研究。',
-              '專業外籍導師一對一指導論文修改，無縫接軌海外名校學術強度。'
+              '【扎實的中華傳統文化與文學薰陶】經典閱讀與文言文基底：英文部並未放低中文的學術標準，課程中依然保有系統性的古詩文、經典文學與歷史故事閱讀，確保學生具備深厚的中文閱讀理解與文化底蘊。文化活動與情境教學：配合中華傳統節慶與文學主題，舉辦相應的課堂活動、中華文化日等學習體驗，讓學生在外語環境中，依然能深植文化認同。',
+              '【精準對接「四校聯考」與本地升學需求】應試與素養並重：中文科課程能涵蓋澳門「四校聯考」（JAE）的考試大綱，重點加強學生在中文寫作與閱讀理解上的實戰能力。升學無縫銜接：無論學生未來打算留在澳門升讀大學，還是前往內地、台灣或香港就讀，中文表達與答題能力都能為學生保留最廣泛的升學選擇。',
+              '【適應雙語學習者的雙軌思維教學】強化邏輯與公眾表達：針對英文部學生習慣英語邏輯的特點，中文科老師在教學上更著重結構邏輯與批判性思維，並透過演說、辯論及專題報告，提升學生的中文口頭表達與自信。拓展與輔導支援：對於非中文為母語或中文基礎較弱的學生，學校提供相應的輔導與拓展教學資源，協助學生漸進式跟上進度。'
             ],
-            quote: '「在老師指導下完成人生第一篇全英學術小論文，進大學後發現自己在論文架構與文獻搜尋上早已領先一步！」',
-            photoTip: '學生在圖書館或研討室與外籍導師圍繞電腦進行學術論文批改指導特寫。'
+            quote: '「在英文部學習不僅具備國際競爭力，中文經典與文化底蘊同樣扎實，為未來升學與多語發展奠定堅實基礎。」',
+            photoTip: '英文部學生參與中文古典文學專題討論、中華文化日體驗或四校聯考中文模擬研討之特寫照片。'
           },
           {
             id: 'SES-3',
@@ -534,13 +534,21 @@
       }
     };
 
-    let currentSectionKey = 'PCS'; // Default to Primary Chinese
+    let currentSectionKey = 'SES'; // Default to Secondary English Section
 
     function selectSection(key) {
       if (currentSectionKey) {
         saveCurrentSectionState();
       }
       currentSectionKey = key;
+      try {
+        localStorage.setItem('cdsj5_active_section', key);
+        if (window.history && window.history.replaceState) {
+          const url = new URL(window.location);
+          url.searchParams.set('sec', key);
+          window.history.replaceState(null, '', url);
+        }
+      } catch (e) {}
       
       // Update Buttons UI
       document.querySelectorAll('.section-btn').forEach(btn => {
@@ -1072,22 +1080,22 @@
                 editRadio.checked = true;
                 toggleEditMode(i, true);
               }
-            }
-            if (cState.name) {
-              const el = document.getElementById(`edit-name-${i}`);
-              if (el) el.value = cState.name;
-            }
-            if (cState.concept) {
-              const el = document.getElementById(`edit-concept-${i}`);
-              if (el) el.value = cState.concept;
-            }
-            if (cState.highlights) {
-              const el = document.getElementById(`edit-highlights-${i}`);
-              if (el) el.value = cState.highlights;
-            }
-            if (cState.quote) {
-              const el = document.getElementById(`edit-quote-${i}`);
-              if (el) el.value = cState.quote;
+              if (cState.name) {
+                const el = document.getElementById(`edit-name-${i}`);
+                if (el) el.value = cState.name;
+              }
+              if (cState.concept) {
+                const el = document.getElementById(`edit-concept-${i}`);
+                if (el) el.value = cState.concept;
+              }
+              if (cState.highlights) {
+                const el = document.getElementById(`edit-highlights-${i}`);
+                if (el) el.value = cState.highlights;
+              }
+              if (cState.quote) {
+                const el = document.getElementById(`edit-quote-${i}`);
+                if (el) el.value = cState.quote;
+              }
             }
             if (cState.needPhoto) {
               const el = document.getElementById(`need-photo-${i}`);
@@ -1326,7 +1334,14 @@
     // Initialize View & Event Listeners
     window.addEventListener('DOMContentLoaded', () => {
       loadStoredData();
-      selectSection('PCS'); // Default to Primary Chinese
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const secFromUrl = urlParams.get('sec') || window.location.hash.replace('#', '');
+      const savedSec = localStorage.getItem('cdsj5_active_section');
+      const initialSec = (secFromUrl && COURSE_DATABASE[secFromUrl]) ? secFromUrl :
+                         (savedSec && COURSE_DATABASE[savedSec]) ? savedSec : 'SES';
+
+      selectSection(initialSec);
 
       // Setup auto-save event listeners on top-level inputs
       ['director-name', 'director-contact', 'extra-notes'].forEach(id => {
