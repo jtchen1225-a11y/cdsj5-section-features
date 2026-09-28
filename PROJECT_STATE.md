@@ -16,32 +16,30 @@
 - [x] **階段四：每門課程 2 張照片上傳、前端壓縮、本機常駐、燈箱放大**（完成）
 - [x] **階段五：Google Apps Script 後端 Drive 分類存檔、防呆預設值加固、全域共享容錯**（完成）
 - [x] **階段六：提取萬用收集系統模組，封裝為專屬 SKILL `admin-form-collector`**（完成）
-- [ ] **階段七：各學部主任填報審核收尾與行政會匯報**（進行中）
+- [x] **階段七：官網雙層架構分離（首頁轉化為教育故事公開展示頁，填報系統獨立為 admin-form.html）**（完成）
+- [ ] **階段八：各學部主任填報審核收尾與行政會匯報**（進行中）
 
 ---
 
 ## 📝 跨電腦交接日誌 (Session Handover Logs)
 
-### 🌙 2026-09-25 21:55 收工交接存檔 (Session Wrapped Up)
-- **本次完成重點**：
-  1. **Google Apps Script 後端防呆修復**：解答了 `Exception: Invalid argument: name` 報錯原因（內部輔助函式 `getOrCreateFolder` 未帶參數引發），在底層加入預設值防呆保護，並指引使用專用函式 `授權與開通雲端硬碟權限`。
-  2. **中學英文部 (SES) 文案更新**：課程 1 置換為《英語思辨・研究與表達成長計劃》，課程 3 置換為《卓越生涯 ‧ 多元升學輔導與生涯規劃矩陣》，融入 Pearson IGCSE/IAL 認證與 QS 前百升學亮點。
-  3. **照片常駐與燈箱投影**：各學部主任上傳的照片實現 localStorage 永久保存，點擊支援 HD Lightbox 滿版全螢幕檢視，便於在大螢幕向校長匯報。
-  4. **萬用模組沉澱**：在 `G:\我的雲端硬碟\04_行政組\【萬用模板】行政資料與照片快速收集系統\` 建立了通用後端腳本、通用 HTML 模板與 3 步快速建立 SOP 指南。
-  5. **封裝為專屬 SKILL**：在 `C:\Users\CDSJ5\.gemini\config\skills\admin-form-collector\` 建立了學校行政專屬的 `admin-form-collector` 技能，日後一句話即可 30 秒自動生成收集系統。
-- **保留進度與當前狀態**：
-  - 前端與 GitHub Pages 運作正常：`https://jtchen1225-a11y.github.io/cdsj5-section-features/`。
-  - 後端腳本已更新防呆加固，待泰主任在 Google Apps Script「管理部署作業」選擇「新版本」部署生效。
-  - 雲端硬碟照片主資料夾已建立：`https://drive.google.com/drive/folders/1V1KqB_Z52j9qO-y9s3z86YtZgUqLwN-m`。
-- **下次開工建議入口**：
-  1. 確認五位學部主任線上填報與上傳照片狀況（可點擊網頁頂部「☁️ 雲端同步最新進度」拉取）。
-  2. 若中學英文部 (SES) 課程 2 或其他學部有新的文案調校需求，直接更新對應卡片。
+### 🌅 2026-09-28 16:33 開工同步與盤點 (Session Resumed)
+- **遠端更新同步**：
+  - 成功執行 `git pull --rebase`，拉取遠端最新 commits (`93e8c41`, `c4a063c`, `f6688fe`)。
+  - **架構升級**：
+    1. **公開展示首頁 (`index.html`)**：已升級為面向家長與學生的《聖若瑟五校五大學部教育故事》（圍繞「孩子怎樣學？得到甚麼成長？下一步走向哪裏？」三層架構）。
+    2. **內部行政填報系統 (`admin-form.html`)**：完整保留教研處收集系統（含 15 門課程審閱、照片上傳、前端壓縮、燈箱與 GAS 後端連通）。
+- **當前線上對應網址**：
+  - 公開教育故事展示頁：`https://jtchen1225-a11y.github.io/cdsj5-section-features/`
+  - 內部行政填報表單：`https://jtchen1225-a11y.github.io/cdsj5-section-features/admin-form.html`
 
 ---
 
 ## 🗂️ 核心檔案索引
-- **線上前端首頁**：`cdsj5-section-features/index.html`
+- **公開教育故事首頁**：`cdsj5-section-features/index.html`
+- **內部填報系統頁面**：`cdsj5-section-features/admin-form.html`
 - **後端腳本原始碼**：`cdsj5-section-features/GoogleAppsScript_Web端接收與照片雲端儲存.gs`
 - **雲端同步檔案**：`G:\我的雲端硬碟\04_行政組\26-27學校行政委員會Agenda\五大學部特色重點課程填報系統.html`
 - **萬用模組庫**：`G:\我的雲端硬碟\04_行政組\【萬用模板】行政資料與照片快速收集系統\`
 - **專屬 SKILL**：`C:\Users\CDSJ5\.gemini\config\skills\admin-form-collector\SKILL.md`
+
